@@ -11,7 +11,7 @@
 | Abd Al Rahman Al Kabani                   |             |                 |
 | Mena Boulus                               |             |   menaboulus    |
 | Abed-Elmouhsen Cherkawi                   |             |   A-CHERKAWI    |
-| Harjot Minhas                             |             |     M1nha5      |
+| Harjot Minhas                             |  40315397   |     M1nha5      |
 | Fady Dous                                 |  40190778   |    fady0101    |
 
 ## Description
