@@ -6,13 +6,13 @@
 
 | Name                                      | Student ID# | GitHub Username |
 |-------------------------------------------|-------------|-----------------|
-| Jawad Hamed Mohammed Mahyoub Al-Aqlani    |             |                 |
-| Ahmad Al Habbal                           |             |                 |
-| Abd Al Rahman Al Kabani                   |             |                 |
-| Mena Boulus                               |             |   menaboulus    |
-| Abed-Elmouhsen Cherkawi                   |             |   A-CHERKAWI    |
+| Jawad Hamed Mohammed Mahyoub Al-Aqlani    |  40272579   |                 |
+| Ahmad Al Habbal                           |  40261029   |                 |
+| Abd Al Rahman Al Kabani                   |  40247395   |                 |
+| Mena Boulus                               |  40291619   |   menaboulus    |
+| Abed-Elmouhsen Cherkawi                   |  40323359   |   A-CHERKAWI    |
 | Harjot Minhas                             |  40315397   |     M1nha5      |
-| Fady Dous                                 |  40190778   |    fady0101    |
+| Fady Dous                                 |  40190778   |    fady0101     |
 
 ## Description
 Our project is a web-based application that provides a centralized platform for campus event management and ticketing. The system makes it easier for users to discover upcoming activities, reserve tickets, and check in at events using QR codes. It also supports event organizers by giving them tools to create and manage events, track attendance, and view basic analytics. In addition, administrators are given oversight capabilities to moderate content, approve organizer accounts, and access overall participation statistics. The goal of this project is to deliver a functional prototype that demonstrates these core features and can serve as a solid starting point for a more complete product in the future.
