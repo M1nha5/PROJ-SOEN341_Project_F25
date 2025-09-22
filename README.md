@@ -25,13 +25,13 @@ For this project, we plan to use Java and/or Node.js for the backend development
 
 ## Roles
 
-| Name                                      | Student ID# |             Role            |
-|-------------------------------------------|-------------|-----------------------------|
-| Jawad Hamed Mohammed Mahyoub Al-Aqlani    |  40272579   |            Frontend         |
-| Ahmad Al Habbal                           |  40261029   |     Team Leader / Forntend  |
-| Abd Al Rahman Al Kabani                   |  40247395   |      Backend / Forntend     |
-| Mena Boulus                               |  40291619   |           Frontend          |
-| Abed-Elmouhsen Cherkawi                   |  40323359   |            Backend          |
-| Harjot Minhas                             |  40315397   |            Backend          |
-| Fady Dous                                 |  40190778   |            Backend          |
+| Name                                      |           Role            |
+|-------------------------------------------|---------------------------|
+| Jawad Hamed Mohammed Mahyoub Al-Aqlani    |          Frontend         |
+| Ahmad Al Habbal                           |   Team Leader / Frontend  |
+| Abd Al Rahman Al Kabani                   |       Backend / Frontend  |
+| Mena Boulus                               |         Frontend          |
+| Abed-Elmouhsen Cherkawi                   |         Backend           |
+| Harjot Minhas                             |         Backend           |
+| Fady Dous                                 |         Backend           |
 
