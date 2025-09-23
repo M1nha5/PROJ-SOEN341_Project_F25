@@ -6,7 +6,7 @@
 
 | Name                                      | Student ID# | GitHub Username |
 |-------------------------------------------|-------------|-----------------|
-| Jawad Hamed Mohammed Mahyoub Al-Aqlani    |  40272579   |                 |
+| Jawad Hamed Mohammed Mahyoub Al-Aqlani    |  40272579   |  JawadAl-Aqlani |
 | Ahmad Al Habbal                           |  40261029   |     ham340i     |
 | Abd Al Rahman Al Kabani                   |  40247395   |                 |
 | Mena Boulus                               |  40291619   |   menaboulus    |
