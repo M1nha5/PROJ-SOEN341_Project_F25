@@ -8,7 +8,7 @@
 |-------------------------------------------|-------------|-----------------|
 | Jawad Hamed Mohammed Mahyoub Al-Aqlani    |  40272579   |  JawadAl-Aqlani |
 | Ahmad Al Habbal                           |  40261029   |     ham340i     |
-| Abd Al Rahman Al Kabani                   |  40247395   |   Aboudka2003   |
+| Abd Al Rahman Al Kabani                   |  40247395   |   aboudka2003   |
 | Mena Boulus                               |  40291619   |   menaboulus    |
 | Abed-Elmouhsen Cherkawi                   |  40323359   |   A-CHERKAWI    |
 | Harjot Minhas                             |  40315397   |     M1nha5      |
