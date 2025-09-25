@@ -1,0 +1,83 @@
+# Team PROJ – Sprint 1 Contribution Log
+
+## Overview
+This document summarizes the contributions of each team member during **Sprint 1**, including assigned issues, activities performed, and estimated time spent.  
+Each commit message was written to be **meaningful** and linked to its related issue using GitHub keywords (e.g., `closes #1`).
+
+---
+
+## Ahmad Al Habbal
+**Issue:** #1 – Event Discovery Page  
+**Activities:**
+- Created branch `US01--Issue-#1` and added initial documentation.
+- Drafted and committed `docs/US01-event-discovery-notes.md` with user story, acceptance criteria, and tasks.
+- Opened pull request, linked to Issue #1, and assigned reviewers.
+- Coordinated sprint planning as **team leader**.
+**Time Spent:** ~6 hours (3h setup + 2h documentation + 1h PR/review).
+
+---
+
+## Mena Boulus
+**Issue:** #2 – Save Event to Calendar  
+**Activities:**
+- Created issue description with user story, acceptance criteria, and detailed tasks.
+- Opened branch `US02-save-to-calendar` and drafted `docs/US02-calendar-notes.md`.
+- Linked commits with `closes #2` for traceability.
+- Prepared pull request and assigned reviewers.
+**Time Spent:** ~5 hours (2h planning + 2h documentation + 1h PR/review).
+
+---
+
+## Jawad Hamed Mohammed Mahyoub Al-Aqlani & Abd Al Rahman Al Kabani
+**Issue:** #3 – Ticket Claim & QR Code  
+**Activities:**
+- Co-authored user story, acceptance criteria, and tasks for QR code ticketing.
+- Researched QR code libraries (`qrcode.react`, ZXing) and documented comparison in `docs/US03-qr-research.md`.
+- Created branch and submitted commits linked with `closes #3`.
+- Opened pull request and coordinated reviews.
+**Time Spent:** ~7 hours total (Jawad 3.5h, Abd Al Rahman 3.5h).
+
+---
+
+## Fady Dous
+**Issue:** #4 – Organizer Event Creation Form  
+**Activities:**
+- Documented user story and acceptance criteria for event creation form.
+- Added tasks for React form creation, validation, and mock data integration.
+- Created branch, committed notes, and linked to Issue #4.
+- Opened pull request with 2 reviewers.
+**Time Spent:** ~5 hours (2.5h documentation + 2.5h PR/review).
+
+---
+
+## Abed-Elmouhsen Cherkawi
+**Issue:** #5 – Organizer Dashboard with Event Stats  
+**Activities:**
+- Drafted issue with user story, acceptance criteria, and tasks.
+- Created branch `US05-dashboard` and documented mock statistics generation and dashboard layout.
+- Committed notes with `closes #5` and opened pull request.
+**Time Spent:** ~5 hours (3h planning + 2h documentation/PR).
+
+---
+
+## Harjot Minhas
+**Issue:** #6 – Admin Dashboard & Event Moderation  
+**Activities:**
+- Wrote user story and acceptance criteria for admin approval & moderation workflow.
+- Defined tasks for `AdminDashboard.jsx` with organizer requests and event moderation.
+- Added documentation in `docs/US06-admin-dashboard-notes.md`.
+- Linked commit with `closes #6` and opened pull request.
+**Time Spent:** ~5 hours (2.5h writing tasks + 2.5h PR).
+
+---
+
+## Summary Table
+
+| Team Member              | Issue # | Feature / Area                 | Time Spent | Key Activities                          |
+|---------------------------|---------|--------------------------------|------------|-----------------------------------------|
+| Ahmad Al Habbal           | #1      | Event Discovery Page           | ~6h        | Branch, docs, PR, sprint coordination   |
+| Mena Boulus               | #2      | Save Event to Calendar         | ~5h        | Docs, commits, PR                       |
+| Jawad & Abd Al Rahman     | #3      | Ticket Claim & QR Code         | ~7h total  | QR code research, docs, commits, PR     |
+| Fady Dous                 | #4      | Organizer Event Creation Form  | ~5h        | Docs, commits, PR                       |
+| Abed-Elmouhsen Cherkawi   | #5      | Organizer Dashboard (Stats)    | ~5h        | Docs, commits, PR                       |
+| Harjot Minhas             | #6      | Admin Dashboard (Moderation)   | ~5h        | Docs, commits, PR                       |
