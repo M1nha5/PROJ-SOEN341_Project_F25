@@ -1,0 +1,98 @@
+# PROJ – Sprint 2 Plan
+
+## Sprint Duration
+**Start Date:** Sepetember 29th, 2025 
+**End Date:** October 11th, 2025
+
+---
+
+## Objectives
+- Fully implement **one core feature** of the system.  
+- Show substantial progress on a **second core feature**.  
+- Maintain meaningful commits, pull requests, and documentation on GitHub.  
+
+---
+
+## Features Selected
+1. **Student Event Experience**  
+   - Event Discovery (browse/search events with filters)  
+   - Ticket Claiming (reserve tickets, receive digital ticket with QR code)  
+
+2. **Organizer Event Management**  
+   - Event Creation (create/manage event details)  
+   - Analytics Dashboard (tickets issued, attendance, remaining capacity)  
+
+---
+
+## User Stories & Tasks
+
+### US.07 – Event Discovery (Student)
+**As a student,** I want to browse and search events by category, date, and organization **so that** I can easily find events.  
+- **Tasks:**  
+  - T.07.1: Implement event list UI component (frontend)  
+  - T.07.2: Add search/filter functionality (frontend)  
+  - T.07.3: Integrate with backend API (backend)  
+
+### US.08 – Ticket Claiming (Student)
+**As a student,** I want to claim a ticket and receive a QR code **so that** I can check in easily at events.  
+- **Tasks:**  
+  - T.08.1: Implement ticket claim button & modal (frontend)  
+  - T.08.2: Generate QR codes (backend)  
+  - T.08.3: Save claimed ticket in DB (backend)  
+
+### US.09 – Event Creation (Organizer)
+**As an organizer,** I want to create events with details **so that** students can view and register.  
+- **Tasks:**  
+  - T.09.1: Event form UI with validation (frontend)  
+  - T.09.2: API route to save events (backend)  
+  - T.09.3: Database schema updates (backend)  
+
+### US.10 – Organizer Dashboard (Analytics)
+**As an organizer,** I want to view event analytics (tickets issued, attendance, capacity) **so that** I can track engagement.  
+- **Tasks:**  
+  - T.10.1: API route for event stats (backend)  
+  - T.10.2: Display stats on dashboard (frontend)  
+  - T.10.3: Export attendee list to CSV (backend)  
+
+---
+
+## Task Assignment
+| Team Member              | Responsibilities |
+|---------------------------|------------------|
+| Ahmad Al Habbal           | Frontend (Event Discovery UI, QR code integration) |
+| Jawad Hamed Al-Aqlani     | Frontend (Event Creation form, UI styling) |
+| Mena Boulus               | Frontend (Dashboard analytics display) |
+| Abd Al Rahman Al Kabani   | Backend (API for tickets & events) |
+| Abed-Elmouhsen Cherkawi   | Backend (QR code generation, DB schema updates) |
+| Harjot Minhas             | Backend (Dashboard stats, CSV export) |
+| Fady Dous                 | Backend (Integration testing, API validation) |
+
+---
+
+## Milestones
+
+- **Sep 29 – Oct 1:**  
+  - Event Discovery UI skeleton created (frontend).  
+  - Event Creation form draft ready (frontend).  
+  - Backend API routes outlined for events/tickets.  
+
+- **Oct 2 – Oct 5:**  
+  - Ticket Claiming logic implemented (frontend + backend).  
+  - QR code generation functional (backend).  
+  - Database schema updates completed.  
+
+- **Oct 6 – Oct 9:**  
+  - Organizer Dashboard: basic analytics display integrated.  
+  - CSV export tool implemented.  
+  - Integration between frontend and backend tested.  
+
+- **Oct 10 – Oct 11 (Sprint Review):**  
+  - Demo of **one fully completed feature** (Event Discovery).  
+  - Substantial progress shown on **second feature** (Organizer Dashboard).  
+  - All documentation, commits, PRs, and minutes finalized in GitHub.  
+
+---
+
+## Communication & Documentation
+- All user stories and tasks are tracked in GitHub Issues.  
+- Branches and commits follow naming convention:  
