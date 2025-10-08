@@ -87,7 +87,7 @@ router.get("/", (req, res) => {
  * Fetch a single event by ID
  */
 router.get("/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id; // keep it as a string
   const event = events.find((e) => e.id === id);
 
   if (!event) {
