@@ -1,0 +1,52 @@
+[
+  {
+    "id": "e1",
+    "title": "Welcome Week Concert",
+    "description": "Kick off the semester with live music and food trucks.",
+    "category": "Music",
+    "organization": "Student Union",
+    "date": "2025-09-28T18:00:00Z",
+    "location": "Main Quad",
+    "capacity": 500
+  },
+  {
+    "id": "e2",
+    "title": "Programming Club Hacknight",
+    "description": "Bring your laptop and collaborate on small projects.",
+    "category": "Technology",
+    "organization": "Programming Club",
+    "date": "2025-10-02T19:00:00Z",
+    "location": "Lab 301",
+    "capacity": 50
+  },
+  {
+    "id": "e3",
+    "title": "Art Exhibition: New Voices",
+    "description": "Gallery opening showcasing student artworks.",
+    "category": "Arts",
+    "organization": "Arts Society",
+    "date": "2025-09-30T16:00:00Z",
+    "location": "Gallery Hall",
+    "capacity": 200
+  },
+  {
+    "id": "e4",
+    "title": "Career Fair",
+    "description": "Meet companies hiring interns and new grads.",
+    "category": "Career",
+    "organization": "Career Services",
+    "date": "2025-10-10T10:00:00Z",
+    "location": "Conference Center",
+    "capacity": 1000
+  },
+  {
+    "id": "e5",
+    "title": "Yoga on the Lawn",
+    "description": "Free guided yoga session for all levels.",
+    "category": "Wellness",
+    "organization": "Wellness Club",
+    "date": "2025-10-05T08:30:00Z",
+    "location": "Lawn B",
+    "capacity": 100
+  }
+]
