@@ -10,3 +10,4 @@ const ticketSchema = new mongoose.Schema({
 });
 
 export default mongoose.model("Ticket", ticketSchema);
+//tickets will have a description, title, as well as an email recommendation for the automated emails

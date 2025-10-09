@@ -1,6 +1,8 @@
 // backend/controllers/ticketController.js
 import Ticket from "../models/ticketModel.js";
 import QRCode from "qrcode";
+import sendEmail from "../utils/sendEmail.js";
+
 
 export const claimTicket = async (req, res) => {
   try {
@@ -38,9 +40,17 @@ export const claimTicket = async (req, res) => {
       message: "🎟️ Ticket successfully claimed",
       ticket,
     });
+
+
+    await sendEmail(userId,
+        `Ticket for event Claimed Successfully`,
+        `Ticket for event ${eventId} has been successfully claimed!` //will include the event time, recommendations and instructions...
+    );
+
   } catch (err) {
     console.error("Claim Ticket Error:", err.message);
-res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
 
   }
+
 };
