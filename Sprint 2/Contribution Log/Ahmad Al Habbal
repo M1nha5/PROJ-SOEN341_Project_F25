@@ -1,1 +1,10 @@
+##Ahmad Al Habbal
+**Issue:** #7 – Event List & Filtering Interface
+**Activities:**
+- Created branch US07--Issue-#7 and implemented the EventList.jsx component.
+- Developed dynamic event listing with search and filter features by date, category, and organization.
+- Fixed JSX syntax errors and refactored inline styles for clarity and performance.
+- Committed and linked all changes with closes #7, opened pull request, and assigned reviewers.
+- Coordinated code review sessions and handled UI integration as team leader.
+**Time Spent:** ~8 hours (4 h implementation + 2 h debugging + 2 h review/coordination).
 
