@@ -1,1 +1,11 @@
+Issue: #8 – Event Filtering & EventDetails Integration
+Activities:
+	•	Created branch US08--Issue-#8 and implemented App.jsx to manage event state and selection.
+	•	Developed dynamic filtering for events by search term, date (upcoming / thisWeek), category, and organization.
+	•	Integrated EventList and EventDetails components to display lists and detailed views of events.
+	•	Added scroll tracking with useEffect and optimized state updates.
+	•	Refactored filtering logic for readability and maintainability.
+	•	Committed all changes, linked with closes #8, opened pull request, and coordinated review feedback.
+
+Time Spent: ~10 hours (5 h implementation + 3 h debugging/filtering logic + 2 h testing & review).
 
