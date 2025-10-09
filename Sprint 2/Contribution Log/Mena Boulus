@@ -1,4 +1,5 @@
-Issue: #8 – Event Filtering & EventDetails Integration
+## Mena Boulus
+**Issue:** #8 – Event Filtering & EventDetails Integration
 Activities:
 	•	Created branch US08--Issue-#8 and implemented App.jsx to manage event state and selection.
 	•	Developed dynamic filtering for events by search term, date (upcoming / thisWeek), category, and organization.
