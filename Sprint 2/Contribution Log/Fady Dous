@@ -1,1 +1,14 @@
+Issues: #1, #2, #3 – Event Discovery, Save Event, Ticket Claim & QR Code
+Activities:
 
+US01 – Event Discovery Page: Implemented App.jsx and EventList.jsx to display all events dynamically with search and filter capabilities. Styled event cards and banners with responsive UI and gradient effects.
+
+US02 – Save Event to Calendar: Developed Save Event button functionality to store selected events locally or in user calendar. Integrated with EventDetails component for seamless user interaction.
+
+US03 – Ticket Claim & QR Code: Created Ticket Claim workflow, generating QR codes for claimed tickets. Integrated QR code display in EventDetails and ensured compatibility with event selection logic.
+
+Refactored components for code readability, optimized state handling using useState and useEffect, and added error handling for image loading and invalid inputs.
+
+Committed all changes, linked with closes #1, #2, #3, opened pull requests, and coordinated review feedback.
+
+Time Spent: ~12 hours (5 h implementation + 4 h debugging & integration + 3 h testing & review)
