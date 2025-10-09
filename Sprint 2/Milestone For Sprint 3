@@ -1,1 +1,64 @@
+# 🏁 Sprint 3 – Feature Completion & UI Enhancements
+**Duration:** October 12 – October 26 , 2025  
+
+---
+
+### 🧭 Goal  
+Finalize and deliver the remaining core features of the **Campus Events & Ticketing Platform**, focusing on completing **Feature #2 (Event Filtering & Search)** and **Feature #3 (Save to Calendar & Ticket Claiming)**.  
+This sprint also includes UI polish, performance improvements, and integration testing to prepare for the mid-project review.
+
+---
+
+## 📋 Sprint Objectives  
+
+### Feature #2 – Event Filtering & Search  
+- Implement combined keyword + category filtering logic  
+- Optimize state management and fix filter reset behavior  
+- Add date-range and “This Week” filter presets  
+- Improve input UX (placeholder text, animations, accessibility)
+
+### Feature #3 – Save to Calendar & Ticket Claiming  
+- Add “Save to Calendar” button with dynamic .ics file generation  
+- Integrate a mock QR code ticket for each event  
+- Create event confirmation modal and success toast  
+- Store claimed tickets locally via `localStorage`
+
+### Frontend & Design Improvements  
+- Update color palette and gradients for consistency  
+- Refine animations on EventList cards (hover & scroll effects)  
+- Add responsive layout for mobile (≤ 768 px)  
+- Polish typography using Space Grotesk + Archivo Black
+
+### Code Maintenance & Docs  
+- Merge Sprint 2 branches into `main` with resolved conflicts  
+- Add inline documentation for major components  
+- Create a short **Frontend Setup Guide** for new members  
+- Update README with new scripts and dependencies  
+
+---
+
+##  Deliverables  
+- Working event search and filter bar with all filters functional  
+- Fully operational ticket claim and calendar saving feature  
+- Polished UI deployed via Codespaces preview link  
+- Updated README and docs merged into main  
+
+---
+
+##  Team Roles  
+
+| Member | Focus Area | Tasks |
+|:--------|:------------|:------|
+| **Ahmad Al Habbal** (@ham340i) | Frontend Lead | Event UI design + animation fixes + filter component enhancements |
+| **Jawad Hamed Mohammed Mahyoub Al-Aqlani** (@JawadAl-Aqlani) | Backend Integration | Mock QR ticket system + local storage management |
+| **Abd Al Rahman Al Kabani** (@aboudka2003) | Full-Stack Support | UI bug fixes + code refactoring + API endpoint validation |
+| **Mena Boulus** (@menaboulus) | Testing & Docs | Filter logic testing + README & wiki documentation |
+| **Abed-Elmouhsen Cherkawi** (@A-CHERKAWI) | API & Calendar | Calendar integration + event modal development |
+| **Harjot Minhas** (@M1nha5) | QA & Deployment | Merge review + UI consistency + mobile responsiveness |
+| **Fady Dous** (@fady0101) | UX Design & Enhancements | Frontend styling + color palette unification + animations |
+
+---
+
+##  Expected Outcome  
+By the end of Sprint 3, the application should be **feature-complete**, with a functional frontend demo that supports search, filter, calendar saving, and ticket claiming — ready for final refinements in Sprint 4.
 
