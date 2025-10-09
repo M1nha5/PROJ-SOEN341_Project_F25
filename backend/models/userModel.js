@@ -1,9 +1,8 @@
 class User {
-    constructor(id, firstName, lastName, email) {
-        //check for dupe ID, if it duplicates, the object is never created
-        this.id = id;
+    constructor(email, firstName, lastName) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+
     }
 }
