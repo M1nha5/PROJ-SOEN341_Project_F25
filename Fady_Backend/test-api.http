@@ -1,0 +1,35 @@
+### 🧠 Check if server is running
+GET http://localhost:4000/
+
+### 🎟️ Get all events
+GET http://localhost:4000/events
+
+### 🔍 Search events by keyword
+GET http://localhost:4000/events?q=tech
+
+### 🎯 Filter by category
+GET http://localhost:4000/events?category=Technology
+
+### 📅 Filter by date range
+GET http://localhost:4000/events?dateFrom=2025-10-10&dateTo=2025-10-30
+
+### 🗓️ Save an event to calendar
+POST http://localhost:4000/calendar
+Content-Type: application/json
+
+{
+  "eventId": 1,
+  "user": "student01"
+}
+
+### 🗓️ Get all calendar entries
+GET http://localhost:4000/calendar
+
+### 🎫 Claim a ticket and generate QR code
+POST http://localhost:4000/tickets
+Content-Type: application/json
+
+{
+  "eventId": 1,
+  "user": "student01"
+}
