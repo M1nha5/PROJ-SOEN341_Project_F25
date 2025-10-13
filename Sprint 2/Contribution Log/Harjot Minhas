@@ -1,1 +1,18 @@
+Harjot Minhas
 
+Issues: #1, #2, #3 – Backend Integration for Student Event Experience
+Activities:
+
+Developed Express.js API routes for events, calendar, and tickets under the routes/ directory.
+
+Implemented /events endpoint supporting filters by date, category, and organization. Ensured event data loading from JSON with proper error handling.
+
+Assisted in the development of /calendar routes for saving user events using uuid for unique identifiers.
+
+Collaborated with the frontend team to connect backend responses to React components and ensure seamless data flow.
+
+Supported integration testing using curl and manual API testing to verify route responses.
+
+Worked on modularizing server logic in app.js for clarity and maintainability.
+
+Time Spent: ~10 hours (6 h implementation + 2 h debugging + 2 h testing & collaboration)
