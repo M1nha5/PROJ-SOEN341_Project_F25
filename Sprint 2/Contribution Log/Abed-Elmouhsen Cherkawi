@@ -1,1 +1,14 @@
+Abed-Elmouhsen Cherkawi
 
+Issue: #4 – Email Notification on Event Registration (US.07)
+
+Activities:
+Implemented the automatic email notification system to enhance user experience and confirmation reliability upon event registration.
+Installed and configured Nodemailer for backend email delivery, ensuring secure and efficient communication via SMTP transport.
+Developed a reusable utility module (sendEmail.js) under the utils/ directory to handle message formatting and email dispatch.
+Integrated the email system within the /tickets/claim endpoint so that an email is automatically sent when a student successfully registers or claims a ticket for an event.
+Designed and tested the email template, including subject, message body, and optional QR code attachment for ticketed events.
+Ensured that all outgoing emails include event title, date, time, and location, and implemented console logging for delivery confirmation and error tracking.
+Collaborated with backend teammates to synchronize notification triggers with the event and ticket APIs, ensuring a seamless flow between registration and confirmation.
+
+Time Spent: ~9 hours (4 h implementation + 3 h debugging + 2 h testing & integration)
