@@ -1,1 +1,10 @@
-
+##Jawad Al-Aqlani
+Task: Backend-Frontend Integration for Event Filtering
+**Activities:**
+-Linked backend API endpoints with the frontend EventList.jsx component.
+-Implemented dynamic data fetching using Axios, including error handling and loading states.
+-Integrated backend filtering logic with frontend controls for date, category, and organization.
+-Updated state management for smoother user experience and responsiveness.
+-Committed all changes with reference to closes #8, opened pull request, and assigned appropriate reviewers.
+-Participated in integration testing with team members and ensured functionality across all filter options.
+**Time Spent:** ~6 hours (3 h integration + 2 h testing/debugging + 1 h coordination).
