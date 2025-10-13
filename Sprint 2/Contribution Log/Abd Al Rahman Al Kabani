@@ -1,1 +1,9 @@
-
+Abd Al Rahman Al Kabani
+Issue: Event Details & Frontend–Backend Integration
+Activities:
+Implemented the EventDetails.jsx component to dynamically render event information with responsive UI and clean layout.
+Integrated frontend with backend API to fetch and display event data in real time.
+Managed data flow between components and ensured correct handling of props and state.
+Resolved integration bugs and improved error handling for smoother API communication.
+Conducted code review sessions and coordinated testing to validate data consistency and UI behavior.
+Time Spent: ~8 hours (4 h implementation + 3 h debugging/integration + 1 h testing and coordination).
