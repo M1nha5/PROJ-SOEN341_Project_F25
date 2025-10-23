@@ -26,8 +26,27 @@ export default function App() {
     const [selectedEvent, setSelectedEvent] = useState(null);
 
     // ---------- VIEW ----------
-    const [view, setView] = useState("events"); // "events" | "calendar"
+    const [view, setView] = useState("events");
     const [calendarTickets, setCalendarTickets] = useState([]);
+    const [showCreateForm, setShowCreateForm] = useState(false);
+    const [newEvent, setNewEvent] = useState({
+        title: "",
+        description: "",
+        date: "",
+        duration: "",
+        category: "",
+        organization: "",
+        capacity: "",
+        ticketType: "",
+    });
+
+    const inputStyle = {
+        padding: "10px",
+        borderRadius: "6px",
+        border: "1px solid #3b82f6",
+        background: "#0f1729",
+        color: "white",
+    };
 
     // ---------- FETCH EVENTS ----------
     useEffect(() => {
@@ -45,7 +64,7 @@ export default function App() {
         loadEvents();
     }, [filters]);
 
-    // ---------- FILTERING ----------
+    // ---------- FILTER ----------
     const handleClearFilters = () => {
         setSearchTerm("");
         setFilters({ date: "", category: "", organization: "" });
@@ -64,7 +83,51 @@ export default function App() {
         return matchesSearch && matchesCat && matchesOrg;
     });
 
-    // ---------- AUTH PAGES ----------
+    // ---------- CREATE EVENT ----------
+    const handleCreateEvent = async (e) => {
+        e.preventDefault();
+
+        const payload = {
+            ...newEvent,
+            duration: newEvent.duration ? Number(newEvent.duration) : undefined,
+            capacity: newEvent.capacity ? Number(newEvent.capacity) : undefined,
+            date: new Date(newEvent.date),
+        };
+
+        try {
+            const res = await fetch("/api/events", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            if (!res.ok) {
+                const errorText = await res.text();
+                throw new Error(errorText || "Failed to create event");
+            }
+
+            const data = await res.json();
+            setEvents((prev) => [...prev, data.event]);
+            alert("✅ Event created successfully!");
+            setShowCreateForm(false);
+
+            setNewEvent({
+                title: "",
+                description: "",
+                date: "",
+                duration: "",
+                category: "",
+                organization: "",
+                capacity: "",
+                ticketType: "",
+            });
+        } catch (err) {
+            console.error(err);
+            alert("❌ Error: " + err.message);
+        }
+    };
+
+    // ---------- AUTH ----------
     if (!user) {
         if (page === "register")
             return <Register goToLogin={() => setPage("login")} />;
@@ -81,9 +144,7 @@ export default function App() {
 
     // ---------- LOADING ----------
     if (loading)
-        return (
-            <div style={styles.loading}>Loading events...</div>
-        );
+        return <div style={styles.loading}>Loading events...</div>;
 
     if (error)
         return (
@@ -92,7 +153,7 @@ export default function App() {
             </div>
         );
 
-    // ---------- MY CALENDAR VIEW ----------
+    // ---------- CALENDAR VIEW ----------
     if (view === "calendar") {
         return (
             <MyCalendar
@@ -108,10 +169,7 @@ export default function App() {
         return (
             <div style={{ minHeight: "100vh", background: "#0f1729", padding: "60px 40px" }}>
                 <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-                    <button
-                        onClick={() => setSelectedEvent(null)}
-                        style={styles.backBtn}
-                    >
+                    <button onClick={() => setSelectedEvent(null)} style={styles.backBtn}>
                         ← Back to Events
                     </button>
 
@@ -177,6 +235,20 @@ export default function App() {
 
                 <div style={{ display: "flex", gap: "10px" }}>
                     <button
+                        onClick={() => setShowCreateForm(true)}
+                        style={{
+                            background: "#22c55e",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "8px",
+                            padding: "8px 12px",
+                            cursor: "pointer",
+                        }}
+                    >
+                        + Create Event
+                    </button>
+
+                    <button
                         onClick={async () => {
                             if (view === "calendar") return setView("events");
                             try {
@@ -211,6 +283,155 @@ export default function App() {
                 </div>
             </div>
 
+            {/* CREATE EVENT FORM (popup) */}
+            {showCreateForm && (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        background: "rgba(0,0,0,0.7)",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        zIndex: 9999,
+                    }}
+                >
+                    <form
+                        onSubmit={handleCreateEvent}
+                        style={{
+                            background: "#1e293b",
+                            padding: "30px",
+                            borderRadius: "12px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "10px",
+                            width: "400px",
+                        }}
+                    >
+                        <h2 style={{ color: "white", textAlign: "center" }}>Create New Event</h2>
+
+                        <label style={{ color: "white" }}>Title</label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="Event title"
+                            value={newEvent.title}
+                            onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                            style={inputStyle}
+                        />
+
+                        <label style={{ color: "white" }}>Description</label>
+                        <textarea
+                            required
+                            placeholder="Describe your event"
+                            value={newEvent.description}
+                            onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+                            style={{ ...inputStyle, height: "70px" }}
+                        />
+
+                        <label style={{ color: "white" }}>Date & Time</label>
+                        <input
+                            type="datetime-local"
+                            required
+                            value={newEvent.date}
+                            onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })}
+                            style={inputStyle}
+                        />
+
+                        <label style={{ color: "white" }}>Duration (minutes)</label>
+                        <input
+                            type="number"
+                            required
+                            min="1"
+                            placeholder="60"
+                            value={newEvent.duration}
+                            onChange={(e) => setNewEvent({ ...newEvent, duration: e.target.value })}
+                            style={inputStyle}
+                        />
+
+                        <label style={{ color: "white" }}>Category</label>
+                        <select
+                            value={newEvent.category}
+                            onChange={(e) => setNewEvent({ ...newEvent, category: e.target.value })}
+                            style={inputStyle}
+                        >
+                            <option value="">Select category</option>
+                            <option value="Music">Music</option>
+                            <option value="Career">Career</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Education">Education</option>
+                            <option value="General">General</option>
+                        </select>
+
+                        <label style={{ color: "white" }}>Organization</label>
+                        <input
+                            type="text"
+                            placeholder="Ex: Student Union"
+                            value={newEvent.organization}
+                            onChange={(e) => setNewEvent({ ...newEvent, organization: e.target.value })}
+                            style={inputStyle}
+                        />
+
+                        <label style={{ color: "white" }}>Capacity</label>
+                        <input
+                            type="number"
+                            min="1"
+                            placeholder="100"
+                            value={newEvent.capacity}
+                            onChange={(e) => setNewEvent({ ...newEvent, capacity: e.target.value })}
+                            style={inputStyle}
+                        />
+
+                        <label style={{ color: "white" }}>Ticket Type</label>
+                        <select
+                            required
+                            value={newEvent.ticketType}
+                            onChange={(e) => setNewEvent({ ...newEvent, ticketType: e.target.value })}
+                            style={inputStyle}
+                        >
+                            <option value="">Select type</option>
+                            <option value="free">Free</option>
+                            <option value="paid">Paid</option>
+                        </select>
+
+                        <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+                            <button
+                                type="submit"
+                                style={{
+                                    flex: 1,
+                                    background: "#22c55e",
+                                    color: "white",
+                                    border: "none",
+                                    borderRadius: "8px",
+                                    padding: "10px",
+                                    cursor: "pointer",
+                                }}
+                            >
+                                Create
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setShowCreateForm(false)}
+                                style={{
+                                    flex: 1,
+                                    background: "#ef4444",
+                                    color: "white",
+                                    border: "none",
+                                    borderRadius: "8px",
+                                    padding: "10px",
+                                    cursor: "pointer",
+                                }}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            )}
+
             <input
                 type="text"
                 placeholder="Search events..."
@@ -231,8 +452,12 @@ export default function App() {
                         key={event._id}
                         onClick={() => setSelectedEvent(event)}
                         style={styles.card}
-                        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
-                        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                        onMouseEnter={(e) =>
+                            (e.currentTarget.style.transform = "scale(1.03)")
+                        }
+                        onMouseLeave={(e) =>
+                            (e.currentTarget.style.transform = "scale(1)")
+                        }
                     >
                         <h3 style={styles.cardTitle}>{event.title}</h3>
                         <p style={{ color: "#cbd5e1", fontWeight: "500" }}>
@@ -248,6 +473,7 @@ export default function App() {
         </div>
     );
 }
+
 
 // ---------- STYLES ----------
 const styles = {
