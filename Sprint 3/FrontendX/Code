@@ -1003,3 +1003,999 @@ export default function App() {
           backgroundClip: 'padding-box, border-box',
           margin: '20px auto'
         }}>
+          <button
+            onClick={closeEventCreationModal}
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              background: 'rgba(239, 68, 68, 0.2)',
+              border: '2px solid #ef4444',
+              color: '#ef4444',
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              fontSize: '1.5rem',
+              cursor: 'pointer',
+              fontWeight: '700',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+         >×</button>
+
+ <h2 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '2.5rem',
+ marginBottom: '30px',
+ textTransform: 'uppercase'
+ }}>{editingEvent ? '✏️ Edit Event' : '➕ Create New Event'}</h2>
+
+ <div style={{ display: 'grid', gap: '25px' }}>
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Event Title *</label>
+ <input
+ type="text"
+ value={eventForm.title}
+ onChange={(e) => handleEventFormChange('title', e.target.value)}
+ placeholder="Enter event title..."
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: eventFormErrors.title ? '2px solid #ef4444' : '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif"
+ }}
+ />
+ {eventFormErrors.title && <span style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '5px', display: 'block' }}>{eventFormErrors.title}</span>}
+ </div>
+
+ <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Date *</label>
+ <input
+ type="date"
+ value={eventForm.date}
+ onChange={(e) => handleEventFormChange('date', e.target.value)}
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: eventFormErrors.date ? '2px solid #ef4444' : '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif"
+ }}
+ />
+ {eventFormErrors.date && <span style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '5px', display: 'block' }}>{eventFormErrors.date}</span>}
+ </div>
+
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Time *</label>
+ <input
+ type="time"
+ value={eventForm.time}
+ onChange={(e) => handleEventFormChange('time', e.target.value)}
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: eventFormErrors.time ? '2px solid #ef4444' : '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif"
+ }}
+ />
+ {eventFormErrors.time && <span style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '5px', display: 'block' }}>{eventFormErrors.time}</span>}
+ </div>
+ </div>
+
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Location *</label>
+ <input
+ type="text"
+ value={eventForm.location}
+ onChange={(e) => handleEventFormChange('location', e.target.value)}
+ placeholder="Enter event location..."
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: eventFormErrors.location ? '2px solid #ef4444' : '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif"
+ }}
+ />
+ {eventFormErrors.location && <span style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '5px', display: 'block' }}>{eventFormErrors.location}</span>}
+ </div>
+
+ <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Category *</label>
+ <select
+ value={eventForm.category}
+ onChange={(e) => handleEventFormChange('category', e.target.value)}
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif",
+ cursor: 'pointer'
+ }}
+ >
+ <option value="Technology">Technology</option>
+ <option value="Sports">Sports</option>
+ <option value="Entertainment">Entertainment</option>
+ <option value="Career">Career</option>
+ <option value="Academic">Academic</option>
+ </select>
+ </div>
+
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Organization *</label>
+ <select
+ value={eventForm.organization}
+ onChange={(e) => handleEventFormChange('organization', e.target.value)}
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif",
+ cursor: 'pointer'
+ }}
+ >
+ {organizationsList.map(org => (
+ <option key={org} value={org}>{org}</option>
+ ))}
+ </select>
+ </div>
+ </div>
+
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Description *</label>
+ <textarea
+ value={eventForm.description}
+ onChange={(e) => handleEventFormChange('description', e.target.value)}
+ placeholder="Enter event description..."
+ rows="4"
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: eventFormErrors.description ? '2px solid #ef4444' : '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif",
+ resize: 'vertical'
+ }}
+ />
+ {eventFormErrors.description && <span style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '5px', display: 'block' }}>{eventFormErrors.description}</span>}
+ </div>
+
+ <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Ticket Type *</label>
+ <select
+ value={eventForm.ticketType}
+ onChange={(e) => handleEventFormChange('ticketType', e.target.value)}
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif",
+ cursor: 'pointer'
+ }}
+ >
+ <option value="free">Free</option>
+ <option value="paid">Paid</option>
+ </select>
+ </div>
+
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>
+ Price {eventForm.ticketType === 'paid' && '*'}
+ </label>
+ <input
+ type="number"
+ value={eventForm.price}
+ onChange={(e) => handleEventFormChange('price', parseFloat(e.target.value) || 0)}
+ placeholder="0.00"
+ min="0"
+ step="0.01"
+ disabled={eventForm.ticketType === 'free'}
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: eventForm.ticketType === 'free' ? 'rgba(15, 23, 41, 0.5)' : 'rgba(15, 23, 41, 0.9)',
+ border: eventFormErrors.price ? '2px solid #ef4444' : '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif",
+ cursor: eventForm.ticketType === 'free' ? 'not-allowed' : 'text'
+ }}
+ />
+ {eventFormErrors.price && <span style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '5px', display: 'block' }}>{eventFormErrors.price}</span>}
+ </div>
+ </div>
+
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Event Capacity</label>
+ <input
+ type="number"
+ value={eventForm.capacity}
+ onChange={(e) => handleEventFormChange('capacity', parseInt(e.target.value) || 100)}
+ placeholder="100"
+ min="1"
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif"
+ }}
+ />
+ </div>
+
+ <div style={{ display: 'flex', gap: '15px', marginTop: '20px' }}>
+ <button
+ onClick={createOrUpdateEvent}
+ style={{
+ flex: 1,
+ padding: '15px 30px',
+ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1.2rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase'
+ }}
+ >
+ {editingEvent ? '💾 Update Event' : '✨ Create Event'}
+ </button>
+
+ <button
+ onClick={closeEventCreationModal}
+ style={{
+ padding: '15px 30px',
+ background: 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1.2rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase'
+ }}
+ >Cancel</button>
+ </div>
+ </div>
+ </div>
+ </div>
+ )
+ );
+
+ // Role Management Modal
+ const RoleManagementModal = () => (
+ showRoleModal && roleEditUser && (
+ <div style={{
+ position: 'fixed',
+ top: 0,
+ left: 0,
+ right: 0,
+ bottom: 0,
+ background: 'rgba(0, 0, 0, 0.85)',
+ backdropFilter: 'blur(10px)',
+ zIndex: 1000,
+ display: 'flex',
+ alignItems: 'center',
+ justifyContent: 'center',
+ padding: '20px'
+ }}>
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(20, 27, 45, 0.98) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '50px',
+ maxWidth: '600px',
+ width: '100%',
+ position: 'relative',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(20, 27, 45, 0.98) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <button
+ onClick={() => setShowRoleModal(false)}
+ style={{
+ position: 'absolute',
+ top: '20px',
+ right: '20px',
+ background: 'rgba(239, 68, 68, 0.2)',
+ border: '2px solid #ef4444',
+ color: '#ef4444',
+ width: '40px',
+ height: '40px',
+ borderRadius: '50%',
+ fontSize: '1.5rem',
+ cursor: 'pointer',
+ fontWeight: '700',
+ display: 'flex',
+ alignItems: 'center',
+ justifyContent: 'center'
+ }}
+ >×</button>
+
+ <h2 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '2rem',
+ marginBottom: '20px',
+ textTransform: 'uppercase'
+ }}>👤 Change User Role</h2>
+
+ <div style={{
+ background: 'rgba(59, 130, 246, 0.1)',
+ border: '2px solid #3b82f6',
+ borderRadius: '15px',
+ padding: '20px',
+ marginBottom: '30px'
+ }}>
+ <div style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '5px' }}>{roleEditUser.name}</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>{roleEditUser.email}</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem', marginTop: '10px' }}>
+ <strong>Current Role:</strong> {roleEditUser.role.charAt(0).toUpperCase() + roleEditUser.role.slice(1)}
+ </div>
+ </div>
+
+ <p style={{ color: '#cbd5e1', marginBottom: '20px' }}>Select a new role for this user:</p>
+
+ <div style={{ display: 'grid', gap: '15px' }}>
+ <button
+ onClick={() => changeUserRole(roleEditUser.id, 'admin', 'Platform Administration')}
+ style={{
+ padding: '20px',
+ background: roleEditUser.role === 'admin' ? 'rgba(139, 92, 246, 0.3)' : 'rgba(59, 130, 246, 0.1)',
+ border: '2px solid #8b5cf6',
+ borderRadius: '15px',
+ color: 'white',
+ cursor: 'pointer',
+ textAlign: 'left',
+ fontFamily: "'Space Grotesk', sans-serif",
+ fontSize: '1rem',
+ transition: 'all 0.3s ease'
+ }}
+ >
+ <div style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '5px' }}>👑 Administrator</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Full platform access, can manage all users and organizations</div>
+ </button>
+
+ <button
+ onClick={() => {
+ const org = prompt('Enter organization name for organizer role:', roleEditUser.organization !== 'N/A' ? roleEditUser.organization : '');
+ if (org) changeUserRole(roleEditUser.id, 'organizer', org);
+ }}
+ style={{
+ padding: '20px',
+ background: roleEditUser.role === 'organizer' ? 'rgba(139, 92, 246, 0.3)' : 'rgba(59, 130, 246, 0.1)',
+ border: '2px solid #3b82f6',
+ borderRadius: '15px',
+ color: 'white',
+ cursor: 'pointer',
+ textAlign: 'left',
+ fontFamily: "'Space Grotesk', sans-serif",
+ fontSize: '1rem',
+ transition: 'all 0.3s ease'
+ }}
+ >
+ <div style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '5px' }}>🏢 Organizer</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Can create and manage events for their organization</div>
+ </button>
+
+ <button
+ onClick={() => changeUserRole(roleEditUser.id, 'viewer')}
+ style={{
+ padding: '20px',
+ background: roleEditUser.role === 'viewer' ? 'rgba(139, 92, 246, 0.3)' : 'rgba(59, 130, 246, 0.1)',
+ border: '2px solid #06b6d4',
+ borderRadius: '15px',
+ color: 'white',
+ cursor: 'pointer',
+ textAlign: 'left',
+ fontFamily: "'Space Grotesk', sans-serif",
+ fontSize: '1rem',
+ transition: 'all 0.3s ease'
+ }}
+ >
+ <div style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '5px' }}>👁️ Viewer</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Can view and register for events only</div>
+ </button>
+ </div>
+ </div>
+ </div>
+ )
+ );
+
+ // Organization Management Modal
+ const OrganizationModal = () => (
+ showOrgModal && (
+ <div style={{
+ position: 'fixed',
+ top: 0,
+ left: 0,
+ right: 0,
+ bottom: 0,
+ background: 'rgba(0, 0, 0, 0.85)',
+ backdropFilter: 'blur(10px)',
+ zIndex: 1000,
+ display: 'flex',
+ alignItems: 'center',
+ justifyContent: 'center',
+ padding: '20px'
+ }}>
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(20, 27, 45, 0.98) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '50px',
+ maxWidth: '600px',
+ width: '100%',
+ position: 'relative',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(20, 27, 45, 0.98) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <button
+ onClick={() => setShowOrgModal(false)}
+ style={{
+ position: 'absolute',
+ top: '20px',
+ right: '20px',
+ background: 'rgba(239, 68, 68, 0.2)',
+ border: '2px solid #ef4444',
+ color: '#ef4444',
+ width: '40px',
+ height: '40px',
+ borderRadius: '50%',
+ fontSize: '1.5rem',
+ cursor: 'pointer',
+ fontWeight: '700',
+ display: 'flex',
+ alignItems: 'center',
+ justifyContent: 'center'
+ }}
+ >×</button>
+
+ <h2 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '2rem',
+ marginBottom: '30px',
+ textTransform: 'uppercase'
+ }}>{editingOrg ? '✏️ Edit Organization' : '➕ Create Organization'}</h2>
+
+ <div style={{ display: 'grid', gap: '20px' }}>
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Organization Name *</label>
+ <input
+ type="text"
+ value={orgForm.name}
+ onChange={(e) => setOrgForm(prev => ({ ...prev, name: e.target.value }))}
+ placeholder="Enter organization name..."
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif"
+ }}
+ />
+ </div>
+
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Contact Email *</label>
+ <input
+ type="email"
+ value={orgForm.contactEmail}
+ onChange={(e) => setOrgForm(prev => ({ ...prev, contactEmail: e.target.value }))}
+ placeholder="contact@organization.edu"
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif"
+ }}
+ />
+ </div>
+
+ <div>
+ <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Category *</label>
+ <select
+ value={orgForm.category}
+ onChange={(e) => setOrgForm(prev => ({ ...prev, category: e.target.value }))}
+ style={{
+ width: '100%',
+ padding: '12px 15px',
+ background: 'rgba(15, 23, 41, 0.9)',
+ border: '2px solid #475569',
+ borderRadius: '10px',
+ color: 'white',
+ fontSize: '1rem',
+ fontFamily: "'Space Grotesk', sans-serif",
+ cursor: 'pointer'
+ }}
+ >
+ <option value="Academic">Academic</option>
+ <option value="Sports">Sports</option>
+ <option value="Arts">Arts</option>
+ <option value="Professional">Professional</option>
+ <option value="Social">Social</option>
+ </select>
+ </div>
+
+ <div style={{ display: 'flex', gap: '15px', marginTop: '20px' }}>
+ <button
+ onClick={createOrUpdateOrganization}
+ style={{
+ flex: 1,
+ padding: '15px 30px',
+ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1.1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase'
+ }}
+ >
+ {editingOrg ? '💾 Update' : '✨ Create'}
+ </button>
+
+ <button
+ onClick={() => setShowOrgModal(false)}
+ style={{
+ padding: '15px 30px',
+ background: 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1.1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase'
+ }}
+ >Cancel</button>
+ </div>
+ </div>
+ </div>
+ </div>
+ )
+ );
+
+ // Admin Dashboard View
+ if (currentView === 'admin') {
+ return (
+ <div style={{
+ minHeight: '100vh',
+ background: '#0f1729',
+ fontFamily: "'Space Grotesk', sans-serif",
+ color: 'white',
+ position: 'relative'
+ }}>
+ <NavigationBar />
+ <EventCreationModal />
+ <RoleManagementModal />
+ <OrganizationModal />
+ 
+ {/* Admin Tab Navigation */}
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(20, 27, 45, 0.9) 100%)',
+ padding: '20px 60px',
+ borderBottom: '2px solid rgba(59, 130, 246, 0.3)',
+ display: 'flex',
+ gap: '15px',
+ overflowX: 'auto',
+ position: 'sticky',
+ top: '80px',
+ zIndex: 50
+ }}>
+ {[
+ { id: 'overview', label: '📊 Overview', badge: 0 },
+ { id: 'analytics', label: '📈 Analytics', badge: 0 },
+ { id: 'create', label: '➕ Create Event', badge: 0 },
+ { id: 'manage', label: '📝 Manage Events', badge: 0 },
+ { id: 'organizations', label: '🏢 Organizations', badge: 0 },
+ { id: 'roles', label: '👥 Roles & Users', badge: 0 },
+ { id: 'organizers', label: '📋 Organizer Requests', badge: pendingRequests },
+ { id: 'events', label: '🎫 Event Moderation', badge: pendingEvents }
+ ].map(tab => (
+ <button
+ key={tab.id}
+ onClick={() => setAdminTab(tab.id)}
+ style={{
+ padding: '12px 25px',
+ background: adminTab === tab.id 
+ ? 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)'
+ : 'transparent',
+ color: 'white',
+ border: adminTab === tab.id ? 'none' : '2px solid #475569',
+ borderRadius: '10px',
+ fontSize: '1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ transition: 'all 0.3s ease',
+ position: 'relative',
+ whiteSpace: 'nowrap'
+ }}
+ >
+ {tab.label}
+ {tab.badge > 0 && (
+ <span style={{
+ position: 'absolute',
+ top: '-8px',
+ right: '-8px',
+ background: '#ef4444',
+ color: 'white',
+ borderRadius: '50%',
+ width: '24px',
+ height: '24px',
+ display: 'flex',
+ alignItems: 'center',
+ justifyContent: 'center',
+ fontSize: '0.75rem',
+ fontWeight: '900'
+ }}>{tab.badge}</span>
+ )}
+ </button>
+ ))}
+ </div>
+ 
+ <div style={{
+ maxWidth: '1400px',
+ margin: '0 auto',
+ padding: '60px 30px'
+ }}>
+ {/* Overview Tab */}
+ {adminTab === 'overview' && (
+ <>
+ <h1 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '3.5rem',
+ marginBottom: '10px',
+ textTransform: 'uppercase',
+ textAlign: 'center'
+ }}>Admin Dashboard</h1>
+
+ <p style={{
+ textAlign: 'center',
+ color: '#cbd5e1',
+ fontSize: '1.3rem',
+ marginBottom: '60px',
+ fontWeight: '500'
+ }}>Platform Management & Moderation</p>
+
+ <div style={{
+ display: 'grid',
+ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+ gap: '30px',
+ marginBottom: '50px'
+ }}>
+ {[
+ { label: 'Total Events', value: totalEvents, icon: '🎉', color: '#3b82f6' },
+ { label: 'Pending Events', value: pendingEvents, icon: '⏳', color: '#f59e0b' },
+ { label: 'Tickets Issued', value: totalTickets, icon: '🎫', color: '#8b5cf6' },
+ { label: 'Avg Attendance', value: `${avgAttendance}%`, icon: '📊', color: '#10b981' },
+ { label: 'Organizations', value: activeOrganizations, icon: '🏢', color: '#06b6d4' },
+ { label: 'Total Users', value: users.length, icon: '👤', color: '#ec4899' },
+ { label: 'Admins', value: totalAdmins, icon: '👑', color: '#8b5cf6' },
+ { label: 'Organizers', value: totalOrganizers, icon: '📝', color: '#3b82f6' }
+ ].map((stat, i) => (
+ <div key={i} style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '20px',
+ padding: '30px',
+ textAlign: 'center',
+ backgroundImage: `linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, ${stat.color} 0%, ${stat.color}88 100%)`,
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ fontSize: '3rem', marginBottom: '10px' }}>{stat.icon}</div>
+ <div style={{ color: stat.color, fontSize: '0.9rem', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase' }}>
+ {stat.label}
+ </div>
+ <div style={{ fontSize: '3rem', fontWeight: '900', color: '#fff' }}>{stat.value}</div>
+ </div>
+ ))}
+ </div>
+
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '40px',
+ marginBottom: '30px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <h2 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '2rem',
+ marginBottom: '30px',
+ textTransform: 'uppercase'
+ }}>⚡ Quick Actions</h2>
+
+ <div style={{ display: 'grid', gap: '20px' }}>
+ <div style={{
+ background: 'rgba(59, 130, 246, 0.1)',
+ border: '2px solid #3b82f6',
+ borderRadius: '15px',
+ padding: '20px',
+ display: 'flex',
+ justifyContent: 'space-between',
+ alignItems: 'center',
+ flexWrap: 'wrap',
+ gap: '15px'
+ }}>
+ <div>
+ <div style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '5px' }}>➕ Create New Event</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Add events to the platform as administrator</div>
+ </div>
+ <button 
+ onClick={() => setAdminTab('create')}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}>Create Event</button>
+ </div>
+
+ <div style={{
+ background: 'rgba(139, 92, 246, 0.1)',
+ border: '2px solid #8b5cf6',
+ borderRadius: '15px',
+ padding: '20px',
+ display: 'flex',
+ justifyContent: 'space-between',
+ alignItems: 'center',
+ flexWrap: 'wrap',
+ gap: '15px'
+ }}>
+ <div>
+ <div style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '5px' }}>📈 View Analytics</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Analyze platform performance and trends</div>
+ </div>
+ <button 
+ onClick={() => setAdminTab('analytics')}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}>View Analytics</button>
+ </div>
+
+ {pendingRequests > 0 && (
+ <div style={{
+ background: 'rgba(239, 68, 68, 0.1)',
+ border: '2px solid #ef4444',
+ borderRadius: '15px',
+ padding: '20px',
+ display: 'flex',
+ justifyContent: 'space-between',
+ alignItems: 'center',
+ flexWrap: 'wrap',
+ gap: '15px'
+ }}>
+ <div>
+ <div style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '5px' }}>⚠️ {pendingRequests} Organizer Request{pendingRequests !== 1 ? 's' : ''} Pending</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Review new organization applications</div>
+ </div>
+ <button 
+ onClick={() => setAdminTab('organizers')}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}>Review Now</button>
+ </div>
+ )}
+
+ {pendingEvents > 0 && (
+ <div style={{
+ background: 'rgba(245, 158, 11, 0.1)',
+ border: '2px solid #f59e0b',
+ borderRadius: '15px',
+ padding: '20px',
+ display: 'flex',
+ justifyContent: 'space-between',
+ alignItems: 'center',
+ flexWrap: 'wrap',
+ gap: '15px'
+ }}>
+ <div>
+ <div style={{ fontWeight: '700', fontSize: '1.1rem', marginBottom: '5px' }}>🔍 {pendingEvents} Event{pendingEvents !== 1 ? 's' : ''} Need Moderation</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>Review flagged or pending events</div>
+ </div>
+ <button 
+ onClick={() => setAdminTab('events')}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}>Moderate Events</button>
+ </div>
+ )}
+
+ {pendingRequests === 0 && pendingEvents === 0 && (
+ <div style={{
+ background: 'rgba(16, 185, 129, 0.1)',
+ border: '2px solid #10b981',
+ borderRadius: '15px',
+ padding: '30px',
+ textAlign: 'center'
+ }}>
+ <div style={{ fontSize: '3rem', marginBottom: '15px' }}>✅</div>
+ <div style={{ fontWeight: '700', fontSize: '1.2rem', color: '#10b981' }}>All Caught Up!</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem', marginTop: '10px' }}>No pending actions required at this time</div>
+ </div>
+ )}
+ </div>
+ </div>
+ </>
+ )}
+
+ {/* Analytics Tab */}
+ {adminTab === 'analytics' && (
+ <>
+ <h1 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '3rem',
+ marginBottom: '20px',
+ textTransform: 'uppercase'
+ }}>📈 Platform Analytics</h1>
+
+ <p style={{
+ color: '#cbd5e1',
+ fontSize: '1.1rem',
+ marginBottom: '40px',
+ fontWeight: '500'
+ }}>Comprehensive insights into platform performance and trends</p>
+
+ {/* Participation Trends Over Time */}
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '40px',
+ marginBottom: '30px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <h2 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '1.8rem',
+ marginBottom: '30px',
+ textTransform: 'uppercase'
+ }}>📊 Participation Trends (Last 10 Months)</h2>
+
+ <div style={{ overflowX: 'auto' }}>
+ <div style={{ display: 'flex', alignItems: 'flex-end', gap: '15px', minWidth: '800px', height: '300px' }}>
+ {mockAnalyticsData.monthlyData.map((data, idx) => {
+ const maxValue = Math.max(...mockAnalyticsData.monthlyData.map(d => d.tickets));
+ const height = (data.tickets / maxValue) * 250;
+ 
+ return (
+ <div key={idx} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+ <div style={{
+ background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+ width: '100%',
+ height: `${height}px`,
+ borderRadius: '8px 8px 0 0',
+ position: 'relative',
+ transition: 'all 0.3s ease',
+ cursor: 'pointer'
+ }}>
+ <div style={{
+ position: 'absolute',
+ top: '-30px',
+ left: '50%',
+ transform: 'translateX(-50%)',
+ color: '#3b82f6',
+ fontWeight: '700',
+ fontSize: '0.9rem',
+ whiteSpace: 'nowrap'
+ }}>{data.tickets}</div>
+ </div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.85rem', fontWeight: '600' }}>{data.month}</div>
+ </div>
+ );
+ })}
+ </div>
+ </div>
+
+ <div style={{
+ display: 'grid',
+ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+ gap: '20px',
+ marginTop: '40px',
+ paddingTop: '30px',
+ borderTop: '2px solid rgba(59, 130, 246, 0.3)'
+ }}></div>
