@@ -1998,4 +1998,1004 @@ export default function App() {
  marginTop: '40px',
  paddingTop: '30px',
  borderTop: '2px solid rgba(59, 130, 246, 0.3)'
+ }}>
+  <div style={{
+ background: 'rgba(59, 130, 246, 0.1)',
+ border: '2px solid #3b82f6',
+ borderRadius: '15px',
+ padding: '20px',
+ textAlign: 'center'
+ }}>
+ <div style={{ color: '#3b82f6', fontSize: '0.85rem', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase' }}>Total Events</div>
+ <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#fff' }}>
+ {mockAnalyticsData.monthlyData.reduce((sum, d) => sum + d.events, 0)}
+ </div>
+ </div>
+
+ <div style={{
+ background: 'rgba(139, 92, 246, 0.1)',
+ border: '2px solid #8b5cf6',
+ borderRadius: '15px',
+ padding: '20px',
+ textAlign: 'center'
+ }}>
+ <div style={{ color: '#8b5cf6', fontSize: '0.85rem', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase' }}>Total Tickets</div>
+ <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#fff' }}>
+ {mockAnalyticsData.monthlyData.reduce((sum, d) => sum + d.tickets, 0)}
+ </div>
+ </div>
+
+ <div style={{
+ background: 'rgba(16, 185, 129, 0.1)',
+ border: '2px solid #10b981',
+ borderRadius: '15px',
+ padding: '20px',
+ textAlign: 'center'
+ }}>
+ <div style={{ color: '#10b981', fontSize: '0.85rem', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase' }}>Total Attendance</div>
+ <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#fff' }}>
+ {mockAnalyticsData.monthlyData.reduce((sum, d) => sum + d.attendance, 0)}
+ </div>
+ </div>
+ </div>
+ </div>
+
+ {/* Event Category Breakdown */}
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '40px',
+ marginBottom: '30px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #10b981 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <h2 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #8b5cf6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '1.8rem',
+ marginBottom: '30px',
+ textTransform: 'uppercase'
+ }}>🎭 Event Category Distribution</h2>
+
+ <div style={{ display: 'grid', gap: '15px' }}>
+ {mockAnalyticsData.categoryBreakdown.map((cat, idx) => (
+ <div key={idx} style={{
+ background: 'rgba(15, 23, 41, 0.8)',
+ border: '2px solid #3b82f6',
+ borderRadius: '15px',
+ padding: '20px'
+ }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
+ <span style={{ fontWeight: '700', fontSize: '1.1rem' }}>{cat.category}</span>
+ <span style={{ color: '#3b82f6', fontWeight: '700', fontSize: '1.1rem' }}>{cat.count} events ({cat.percentage}%)</span>
+ </div>
+ <div style={{
+ background: 'rgba(15, 23, 41, 0.8)',
+ height: '12px',
+ borderRadius: '10px',
+ overflow: 'hidden'
+ }}>
+ <div style={{
+ background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+ height: '100%',
+ width: `${cat.percentage}%`,
+ transition: 'width 0.5s ease'
  }}></div>
+ </div>
+ </div>
+ ))}
+ </div>
+ </div>
+
+ {/* Top Organizations */}
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '40px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <h2 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #06b6d4 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '1.8rem',
+ marginBottom: '30px',
+ textTransform: 'uppercase'
+ }}>🏆 Top Performing Organizations</h2>
+
+ <div style={{ display: 'grid', gap: '20px' }}>
+ {mockAnalyticsData.topOrganizations.map((org, idx) => (
+ <div key={idx} style={{
+ background: 'rgba(15, 23, 41, 0.8)',
+ border: '2px solid #06b6d4',
+ borderRadius: '15px',
+ padding: '25px',
+ display: 'flex',
+ justifyContent: 'space-between',
+ alignItems: 'center',
+ flexWrap: 'wrap',
+ gap: '15px'
+ }}>
+ <div style={{ flex: 1 }}>
+ <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '10px' }}>
+ <span style={{
+ fontSize: '2rem',
+ background: idx === 0 ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' : idx === 1 ? 'linear-gradient(135deg, #94a3b8 0%, #64748b 100%)' : 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+ width: '50px',
+ height: '50px',
+ borderRadius: '50%',
+ display: 'flex',
+ alignItems: 'center',
+ justifyContent: 'center',
+ fontWeight: '900'
+ }}>#{idx + 1}</span>
+ <h3 style={{ fontSize: '1.3rem', fontWeight: '700' }}>{org.name}</h3>
+ </div>
+ </div>
+ <div style={{ display: 'flex', gap: '30px' }}>
+ <div style={{ textAlign: 'center' }}>
+ <div style={{ color: '#3b82f6', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase' }}>Events</div>
+ <div style={{ fontSize: '2rem', fontWeight: '900' }}>{org.events}</div>
+ </div>
+ <div style={{ textAlign: 'center' }}>
+ <div style={{ color: '#8b5cf6', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase' }}>Tickets</div>
+ <div style={{ fontSize: '2rem', fontWeight: '900' }}>{org.tickets}</div>
+ </div>
+ </div>
+ </div>
+ ))}
+ </div>
+ </div>
+ </>
+ )}
+
+ {/* Create Event Tab */}
+ {adminTab === 'create' && (
+ <>
+ <h1 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '3rem',
+ marginBottom: '20px',
+ textTransform: 'uppercase'
+ }}>➕ Create New Event</h1>
+
+ <p style={{
+ color: '#cbd5e1',
+ fontSize: '1.1rem',
+ marginBottom: '40px',
+ fontWeight: '500'
+ }}>Add a new event to the campus events platform</p>
+
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '60px',
+ textAlign: 'center',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ fontSize: '5rem', marginBottom: '30px' }}>🎉</div>
+ <h3 style={{ fontSize: '2rem', color: '#3b82f6', marginBottom: '20px', fontWeight: '700' }}>Ready to Create an Event?</h3>
+ <p style={{ color: '#cbd5e1', fontSize: '1.1rem', marginBottom: '40px' }}>Click the button below to open the event creation form</p>
+ 
+ <button
+ onClick={openEventCreationModal}
+ style={{
+ padding: '20px 50px',
+ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '15px',
+ fontSize: '1.3rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ boxShadow: '0 10px 30px rgba(16, 185, 129, 0.4)',
+ transition: 'all 0.3s ease'
+ }}
+ >✨ Create Event</button>
+ </div>
+ </>
+ )}
+
+ {/* Manage Events Tab */}
+ {adminTab === 'manage' && (
+ <>
+ <h1 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '3rem',
+ marginBottom: '20px',
+ textTransform: 'uppercase'
+ }}>📝 Manage Events</h1>
+
+ <p style={{
+ color: '#cbd5e1',
+ fontSize: '1.1rem',
+ marginBottom: '40px',
+ fontWeight: '500'
+ }}>Edit or delete existing events on the platform</p>
+
+ <div style={{ display: 'grid', gap: '30px' }}>
+ {events.filter(e => e.status === 'approved').map(event => (
+ <div key={event.id} style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '30px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '20px', flexWrap: 'wrap', gap: '20px' }}>
+ <div style={{ flex: 1 }}>
+ <h3 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '1.8rem',
+ marginBottom: '10px',
+ textTransform: 'uppercase'
+ }}>{event.title}</h3>
+ <div style={{ color: '#cbd5e1', fontSize: '0.95rem' }}>
+ {event.organization} • {event.category} • {event.date} at {event.time}
+ </div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.95rem', marginTop: '5px' }}>
+ 📍 {event.location}
+ </div>
+ </div>
+ <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+ <span style={{
+ padding: '8px 16px',
+ background: event.ticketType === 'free' 
+ ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+ : 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+ color: 'white',
+ borderRadius: '25px',
+ fontSize: '0.85rem',
+ fontWeight: '700',
+ textTransform: 'uppercase'
+ }}>{event.ticketType === 'free' ? 'FREE' : `$${event.price}`}</span>
+ </div>
+ </div>
+
+ <p style={{ color: '#e2e8f0', lineHeight: '1.6', marginBottom: '25px' }}>{event.description}</p>
+
+ <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+ <button
+ onClick={() => openEventEditModal(event)}
+ style={{
+ flex: 1,
+ minWidth: '150px',
+ padding: '12px 25px',
+ background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ transition: 'all 0.3s ease'
+ }}
+ >✏️ Edit Event</button>
+
+ <button
+ onClick={() => deleteEvent(event.id)}
+ style={{
+ padding: '12px 25px',
+ background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ transition: 'all 0.3s ease'
+ }}
+ >🗑️ Delete</button>
+ </div>
+ </div>
+ ))}
+ </div>
+ </>
+ )}
+
+ {/* Organizations Tab */}
+ {adminTab === 'organizations' && (
+ <>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', flexWrap: 'wrap', gap: '20px' }}>
+ <div>
+ <h1 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '3rem',
+ marginBottom: '10px',
+ textTransform: 'uppercase'
+ }}>🏢 Organizations</h1>
+ <p style={{
+ color: '#cbd5e1',
+ fontSize: '1.1rem',
+ fontWeight: '500'
+ }}>Manage campus organizations and their details</p>
+ </div>
+ 
+ <button
+ onClick={openOrgCreationModal}
+ style={{
+ padding: '15px 30px',
+ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1.1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ boxShadow: '0 5px 20px rgba(16, 185, 129, 0.4)'
+ }}
+ >➕ Add Organization</button>
+ </div>
+
+ <div style={{ display: 'grid', gap: '25px' }}>
+ {organizations.map(org => (
+ <div key={org.id} style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '30px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', flexWrap: 'wrap', gap: '20px' }}>
+ <div style={{ flex: 1 }}>
+ <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
+ <h3 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '1.8rem',
+ textTransform: 'uppercase'
+ }}>{org.name}</h3>
+ <span style={{
+ padding: '6px 14px',
+ background: org.status === 'active' 
+ ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+ : 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
+ color: 'white',
+ borderRadius: '20px',
+ fontSize: '0.75rem',
+ fontWeight: '700',
+ textTransform: 'uppercase'
+ }}>{org.status}</span>
+ </div>
+
+ <div style={{
+ display: 'grid',
+ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+ gap: '15px',
+ marginBottom: '20px'
+ }}>
+ <div>
+ <div style={{ color: '#3b82f6', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase' }}>Category</div>
+ <div style={{ color: '#e2e8f0', fontSize: '1rem' }}>{org.category}</div>
+ </div>
+ <div>
+ <div style={{ color: '#8b5cf6', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase' }}>Members</div>
+ <div style={{ color: '#e2e8f0', fontSize: '1rem' }}>{org.memberCount}</div>
+ </div>
+ <div>
+ <div style={{ color: '#06b6d4', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase' }}>Events Hosted</div>
+ <div style={{ color: '#e2e8f0', fontSize: '1rem' }}>{org.eventsHosted}</div>
+ </div>
+ <div>
+ <div style={{ color: '#10b981', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase' }}>Contact</div>
+ <div style={{ color: '#e2e8f0', fontSize: '0.9rem' }}>{org.contactEmail}</div>
+ </div>
+ </div>
+ </div>
+
+ <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+ <button
+ onClick={() => openOrgEditModal(org)}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}
+ >✏️ Edit</button>
+
+ <button
+ onClick={() => toggleOrgStatus(org.id)}
+ style={{
+ padding: '10px 20px',
+ background: org.status === 'active'
+ ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
+ : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}
+ >{org.status === 'active' ? '⏸️ Deactivate' : '▶️ Activate'}</button>
+
+ <button
+ onClick={() => deleteOrganization(org.id)}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}
+ >🗑️ Delete</button>
+ </div>
+ </div>
+ </div>
+ ))}
+ </div>
+ </>
+ )}
+
+ {/* Roles & Users Tab */}
+ {adminTab === 'roles' && (
+ <>
+ <h1 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '3rem',
+ marginBottom: '20px',
+ textTransform: 'uppercase'
+ }}>👥 Roles & User Management</h1>
+
+ <p style={{
+ color: '#cbd5e1',
+ fontSize: '1.1rem',
+ marginBottom: '40px',
+ fontWeight: '500'
+ }}>Manage user roles and permissions across the platform</p>
+
+ {/* Role Statistics */}
+ <div style={{
+ display: 'grid',
+ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+ gap: '20px',
+ marginBottom: '40px'
+ }}>
+ {[
+ { role: 'Admin', count: totalAdmins, icon: '👑', color: '#8b5cf6', description: 'Full access' },
+ { role: 'Organizer', count: totalOrganizers, icon: '🏢', color: '#3b82f6', description: 'Event management' },
+ { role: 'Viewer', count: totalViewers, icon: '👁️', color: '#06b6d4', description: 'View only' }
+ ].map((stat, i) => (
+ <div key={i} style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '20px',
+ padding: '25px',
+ textAlign: 'center',
+ backgroundImage: `linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, ${stat.color} 0%, ${stat.color}88 100%)`,
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>{stat.icon}</div>
+ <div style={{ color: stat.color, fontSize: '0.85rem', fontWeight: '700', marginBottom: '5px', textTransform: 'uppercase' }}>
+ {stat.role}
+ </div>
+ <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#fff', marginBottom: '5px' }}>{stat.count}</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.8rem' }}>{stat.description}</div>
+ </div>
+ ))}
+ </div>
+
+ {/* User List */}
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '40px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <h2 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '2rem',
+ marginBottom: '30px',
+ textTransform: 'uppercase'
+ }}>All Users</h2>
+
+ <div style={{ display: 'grid', gap: '20px' }}>
+ {users.map(user => (
+ <div key={user.id} style={{
+ background: 'rgba(15, 23, 41, 0.8)',
+ border: user.status === 'suspended' ? '2px solid #ef4444' : '2px solid #3b82f6',
+ borderRadius: '15px',
+ padding: '25px',
+ display: 'flex',
+ justifyContent: 'space-between',
+ alignItems: 'center',
+ flexWrap: 'wrap',
+ gap: '20px'
+ }}>
+ <div style={{ flex: 1, minWidth: '250px' }}>
+ <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+ <h3 style={{ fontSize: '1.3rem', fontWeight: '700', color: '#fff' }}>{user.name}</h3>
+ {user.status === 'suspended' && (
+ <span style={{
+ padding: '4px 12px',
+ background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+ color: 'white',
+ borderRadius: '15px',
+ fontSize: '0.75rem',
+ fontWeight: '700',
+ textTransform: 'uppercase'
+ }}>⛔ Suspended</span>
+ )}
+ <span style={{
+ padding: '4px 12px',
+ background: user.role === 'admin' 
+ ? 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)'
+ : user.role === 'organizer'
+ ? 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)'
+ : 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
+ color: 'white',
+ borderRadius: '15px',
+ fontSize: '0.75rem',
+ fontWeight: '700',
+ textTransform: 'uppercase'
+ }}>
+ {user.role === 'admin' ? '👑' : user.role === 'organizer' ? '🏢' : '👁️'} {user.role}
+ </span>
+ </div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.95rem', marginBottom: '8px' }}>
+ <strong style={{ color: '#3b82f6' }}>Email:</strong> {user.email}
+ </div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.95rem', marginBottom: '8px' }}>
+ <strong style={{ color: '#8b5cf6' }}>Organization:</strong> {user.organization}
+ </div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.95rem', marginBottom: '8px' }}>
+ <strong style={{ color: '#06b6d4' }}>Joined:</strong> {user.joinDate}
+ {user.role === 'organizer' && ` • ${user.eventsCreated} events created`}
+ </div>
+ {user.suspensionReason && (
+ <div style={{
+ background: 'rgba(239, 68, 68, 0.1)',
+ border: '1px solid #ef4444',
+ borderRadius: '8px',
+ padding: '10px',
+ marginTop: '10px',
+ color: '#fca5a5',
+ fontSize: '0.9rem'
+ }}>
+ <strong>Suspension Reason:</strong> {user.suspensionReason}
+ </div>
+ )}
+ </div>
+ <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+ <button
+ onClick={() => openRoleModal(user)}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}
+ >👤 Change Role</button>
+
+ {user.status === 'active' ? (
+ <button
+ onClick={() => {
+ const reason = prompt('Enter suspension reason:');
+ if (reason) suspendUser(user.id, reason);
+ }}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}
+ >⛔ Suspend</button>
+ ) : (
+ <button
+ onClick={() => reactivateUser(user.id)}
+ style={{
+ padding: '10px 20px',
+ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '10px',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ fontSize: '0.85rem'
+ }}
+ >✓ Reactivate</button>
+ )}
+ </div>
+ </div>
+ ))}
+ </div>
+ </div>
+ </>
+ )}
+
+ {/* Organizer Requests Tab - EXISTING CODE CONTINUES... */}
+ {adminTab === 'organizers' && (
+ <>
+ <h1 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '3rem',
+ marginBottom: '20px',
+ textTransform: 'uppercase'
+ }}>👥 Organizer Requests</h1>
+
+ <p style={{
+ color: '#cbd5e1',
+ fontSize: '1.1rem',
+ marginBottom: '40px',
+ fontWeight: '500'
+ }}>Review and approve new organization applications</p>
+
+ {organizerRequests.filter(r => r.status === 'pending').length === 0 ? (
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '60px',
+ textAlign: 'center',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ fontSize: '4rem', marginBottom: '20px' }}>✨</div>
+ <h3 style={{ fontSize: '1.5rem', color: '#3b82f6', marginBottom: '10px' }}>No Pending Requests</h3>
+ <p style={{ color: '#cbd5e1' }}>All organizer applications have been reviewed</p>
+ </div>
+ ) : (
+ <div style={{ display: 'grid', gap: '30px' }}>
+ {organizerRequests.filter(r => r.status === 'pending').map(request => (
+ <div key={request.id} style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '40px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '30px', flexWrap: 'wrap', gap: '20px' }}>
+ <div>
+ <h3 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '2rem',
+ marginBottom: '10px',
+ textTransform: 'uppercase'
+ }}>{request.organizationName}</h3>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>
+ Submitted on {request.requestDate}
+ </div>
+ </div>
+ <span style={{
+ padding: '8px 16px',
+ background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+ color: 'white',
+ borderRadius: '25px',
+ fontSize: '0.85rem',
+ fontWeight: '700',
+ textTransform: 'uppercase'
+ }}>⏳ Pending</span>
+ </div>
+
+ <div style={{
+ display: 'grid',
+ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+ gap: '20px',
+ marginBottom: '30px'
+ }}>
+ <div style={{
+ background: 'rgba(59, 130, 246, 0.1)',
+ border: '2px solid #3b82f6',
+ borderRadius: '15px',
+ padding: '20px'
+ }}>
+ <div style={{ color: '#3b82f6', fontSize: '0.85rem', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase' }}>Contact Person</div>
+ <div style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '5px' }}>{request.contactName}</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>{request.email}</div>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>{request.phone}</div>
+ </div>
+
+ <div style={{
+ background: 'rgba(139, 92, 246, 0.1)',
+ border: '2px solid #8b5cf6',
+ borderRadius: '15px',
+ padding: '20px'
+ }}>
+ <div style={{ color: '#8b5cf6', fontSize: '0.85rem', fontWeight: '700', marginBottom: '8px', textTransform: 'uppercase' }}>Documentation</div>
+ <div style={{ fontSize: '0.95rem', color: '#e2e8f0' }}>{request.documents}</div>
+ </div>
+ </div>
+
+ <div style={{
+ background: 'rgba(6, 182, 212, 0.1)',
+ border: '2px solid #06b6d4',
+ borderRadius: '15px',
+ padding: '20px',
+ marginBottom: '30px'
+ }}>
+ <div style={{ color: '#06b6d4', fontSize: '0.85rem', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase' }}>Organization Description</div>
+ <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>{request.description}</p>
+ </div>
+
+ <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+ <button
+ onClick={() => approveOrganizerRequest(request.id)}
+ style={{
+ flex: 1,
+ minWidth: '200px',
+ padding: '15px 30px',
+ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1.1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ transition: 'all 0.3s ease'
+ }}
+ >✓ Approve Request</button>
+
+ <button
+ onClick={() => {
+ const reason = prompt('Enter rejection reason:');
+ if (reason) rejectOrganizerRequest(request.id, reason);
+ }}
+ style={{
+ flex: 1,
+ minWidth: '200px',
+ padding: '15px 30px',
+ background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1.1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ transition: 'all 0.3s ease'
+ }}
+ >✗ Reject Request</button>
+ </div>
+ </div>
+ ))}
+ </div>
+ )}
+ </>
+ )}
+
+ {/* Event Moderation Tab */}
+ {adminTab === 'events' && (
+ <>
+ <h1 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '3rem',
+ marginBottom: '20px',
+ textTransform: 'uppercase'
+ }}>🎫 Event Moderation</h1>
+
+ <p style={{
+ color: '#cbd5e1',
+ fontSize: '1.1rem',
+ marginBottom: '40px',
+ fontWeight: '500'
+ }}>Review pending and flagged events for policy compliance</p>
+
+ {events.filter(e => e.status === 'pending').length === 0 ? (
+ <div style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '60px',
+ textAlign: 'center',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ fontSize: '4rem', marginBottom: '20px' }}>🎉</div>
+ <h3 style={{ fontSize: '1.5rem', color: '#3b82f6', marginBottom: '10px' }}>No Events Pending Review</h3>
+ <p style={{ color: '#cbd5e1' }}>All events have been moderated and approved</p>
+ </div>
+ ) : (
+ <div style={{ display: 'grid', gap: '30px' }}>
+ {events.filter(e => e.status === 'pending').map(event => (
+ <div key={event.id} style={{
+ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+ border: '3px solid transparent',
+ borderRadius: '25px',
+ padding: '40px',
+ backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+ backgroundOrigin: 'border-box',
+ backgroundClip: 'padding-box, border-box'
+ }}>
+ <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: '30px', flexWrap: 'wrap', gap: '20px' }}>
+ <div>
+ <h3 style={{
+ fontFamily: "'Archivo Black', sans-serif",
+ background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+ WebkitBackgroundClip: 'text',
+ WebkitTextFillColor: 'transparent',
+ fontSize: '2rem',
+ marginBottom: '10px',
+ textTransform: 'uppercase'
+ }}>{event.title}</h3>
+ <div style={{ color: '#cbd5e1', fontSize: '0.9rem' }}>
+ By {event.organization}
+ </div>
+ </div>
+ <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+ <span style={{
+ padding: '8px 16px',
+ background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+ color: 'white',
+ borderRadius: '25px',
+ fontSize: '0.85rem',
+ fontWeight: '700',
+ textTransform: 'uppercase'
+ }}>⏳ Pending</span>
+ {event.flagReason && (
+ <span style={{
+ padding: '8px 16px',
+ background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+ color: 'white',
+ borderRadius: '25px',
+ fontSize: '0.85rem',
+ fontWeight: '700',
+ textTransform: 'uppercase'
+ }}>🚩 Flagged</span>
+ )}
+ </div>
+ </div>
+
+ {event.flagReason && (
+ <div style={{
+ background: 'rgba(239, 68, 68, 0.1)',
+ border: '2px solid #ef4444',
+ borderRadius: '15px',
+ padding: '20px',
+ marginBottom: '30px'
+ }}>
+ <div style={{ color: '#ef4444', fontSize: '0.85rem', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase' }}>⚠️ Flag Reason</div>
+ <p style={{ color: '#fca5a5' }}>{event.flagReason}</p>
+ </div>
+ )}
+
+ <div style={{
+ display: 'grid',
+ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+ gap: '15px',
+ marginBottom: '30px'
+ }}>
+ <div style={{
+ background: 'rgba(59, 130, 246, 0.1)',
+ border: '2px solid #3b82f6',
+ borderRadius: '15px',
+ padding: '15px'
+ }}>
+ <div style={{ color: '#3b82f6', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px' }}>📅 DATE</div>
+ <div style={{ color: '#e2e8f0' }}>{event.date} at {event.time}</div>
+ </div>
+ <div style={{
+ background: 'rgba(139, 92, 246, 0.1)',
+ border: '2px solid #8b5cf6',
+ borderRadius: '15px',
+ padding: '15px'
+ }}>
+ <div style={{ color: '#8b5cf6', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px' }}>📍 LOCATION</div>
+ <div style={{ color: '#e2e8f0' }}>{event.location}</div>
+ </div>
+ <div style={{
+ background: 'rgba(6, 182, 212, 0.1)',
+ border: '2px solid #06b6d4',
+ borderRadius: '15px',
+ padding: '15px'
+ }}>
+ <div style={{ color: '#06b6d4', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px' }}>🎭 CATEGORY</div>
+ <div style={{ color: '#e2e8f0' }}>{event.category}</div>
+ </div>
+ <div style={{
+ background: event.ticketType === 'free' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(245, 158, 11, 0.1)',
+ border: event.ticketType === 'free' ? '2px solid #10b981' : '2px solid #f59e0b',
+ borderRadius: '15px',
+ padding: '15px'
+ }}>
+ <div style={{ color: event.ticketType === 'free' ? '#10b981' : '#f59e0b', fontSize: '0.8rem', fontWeight: '700', marginBottom: '5px' }}>💵 PRICING</div>
+ <div style={{ color: '#e2e8f0' }}>{event.ticketType === 'free' ? 'FREE' : `$${event.price}`}</div>
+ </div>
+ </div>
+
+ <div style={{
+ background: 'rgba(6, 182, 212, 0.1)',
+ border: '2px solid #06b6d4',
+ borderRadius: '15px',
+ padding: '20px',
+ marginBottom: '30px'
+ }}>
+ <div style={{ color: '#06b6d4', fontSize: '0.85rem', fontWeight: '700', marginBottom: '10px', textTransform: 'uppercase' }}>Event Description</div>
+ <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>{event.description}</p>
+ </div>
+
+ <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+ <button
+ onClick={() => approveEvent(event.id)}
+ style={{
+ flex: 1,
+ minWidth: '150px',
+ padding: '15px 30px',
+ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+ color: 'white',
+ border: 'none',
+ borderRadius: '12px',
+ fontSize: '1.1rem',
+ fontWeight: '700',
+ cursor: 'pointer',
+ textTransform: 'uppercase',
+ transition: 'all 0.3s ease'
+ }}
