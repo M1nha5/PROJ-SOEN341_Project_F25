@@ -1,1 +1,1005 @@
+import React, { useState, useEffect } from 'react';
 
+const mockEvents = [
+  {
+    id: 1,
+    title: "Tech Talk: AI in Healthcare",
+    date: "2025-10-15",
+    time: "14:00",
+    location: "Main Auditorium",
+    category: "Technology",
+    organization: "Computer Science Club",
+    description: "Join us for an insightful discussion on AI applications in modern healthcare.",
+    ticketType: "free",
+    price: 0,
+    status: "approved",
+    organizerId: 1,
+    ticketsIssued: 150,
+    attendees: 132
+  },
+  {
+    id: 2,
+    title: "Basketball Tournament Finals",
+    date: "2025-10-12",
+    time: "18:00",
+    location: "Sports Complex",
+    category: "Sports",
+    organization: "Sports Association",
+    description: "Championship game of the inter-faculty basketball tournament.",
+    ticketType: "paid",
+    price: 15,
+    status: "approved",
+    organizerId: 2,
+    ticketsIssued: 200,
+    attendees: 185
+  },
+  {
+    id: 3,
+    title: "Live Jazz Night",
+    date: "2025-10-20",
+    time: "19:30",
+    location: "Music Hall",
+    category: "Entertainment",
+    organization: "Music Society",
+    description: "An evening of live jazz performances by student musicians.",
+    ticketType: "free",
+    price: 0,
+    status: "approved",
+    organizerId: 3,
+    ticketsIssued: 180,
+    attendees: 165
+  },
+  {
+    id: 4,
+    title: "Career Fair 2025",
+    date: "2025-10-18",
+    time: "10:00",
+    location: "Convention Center",
+    category: "Career",
+    organization: "Career Services",
+    description: "Meet top employers and explore internship opportunities.",
+    ticketType: "free",
+    price: 0,
+    status: "approved",
+    organizerId: 4,
+    ticketsIssued: 300,
+    attendees: 275
+  },
+  {
+    id: 5,
+    title: "Hackathon 24hrs",
+    date: "2025-10-25",
+    time: "09:00",
+    location: "Engineering Building",
+    category: "Technology",
+    organization: "Computer Science Club",
+    description: "24-hour coding challenge with amazing prizes.",
+    ticketType: "paid",
+    price: 25,
+    status: "approved",
+    organizerId: 1,
+    ticketsIssued: 120,
+    attendees: 0
+  },
+  {
+    id: 6,
+    title: "Poetry Slam",
+    date: "2025-10-14",
+    time: "20:00",
+    location: "Arts Center",
+    category: "Academic",
+    organization: "Literary Club",
+    description: "Express yourself through spoken word poetry.",
+    ticketType: "free",
+    price: 0,
+    status: "pending",
+    organizerId: 5,
+    flagReason: "Reported for inappropriate content description",
+    ticketsIssued: 0,
+    attendees: 0
+  },
+  {
+    id: 7,
+    title: "Startup Pitch Competition",
+    date: "2025-10-22",
+    time: "15:00",
+    location: "Innovation Hub",
+    category: "Career",
+    organization: "Entrepreneurship Club",
+    description: "Student entrepreneurs pitch their innovative business ideas to a panel of investors.",
+    ticketType: "paid",
+    price: 10,
+    status: "pending",
+    organizerId: 6,
+    ticketsIssued: 0,
+    attendees: 0
+  }
+];
+
+const mockOrganizerRequests = [
+  {
+    id: 1,
+    organizationName: "Photography Club",
+    contactName: "Sarah Johnson",
+    email: "sarah.j@university.edu",
+    phone: "(555) 123-4567",
+    requestDate: "2025-10-20",
+    status: "pending",
+    description: "We organize photography workshops, photo walks, and exhibitions for student photographers.",
+    documents: "Tax ID: 12-3456789"
+  },
+  {
+    id: 2,
+    organizationName: "Debate Society",
+    contactName: "Michael Chen",
+    email: "m.chen@university.edu",
+    phone: "(555) 987-6543",
+    requestDate: "2025-10-18",
+    status: "pending",
+    description: "A student organization dedicated to competitive debate and public speaking training.",
+    documents: "Tax ID: 98-7654321"
+  },
+  {
+    id: 3,
+    organizationName: "Sustainability Initiative",
+    contactName: "Emma Rodriguez",
+    email: "e.rodriguez@university.edu",
+    phone: "(555) 456-7890",
+    requestDate: "2025-10-15",
+    status: "pending",
+    description: "Campus-wide environmental awareness and sustainability action organization.",
+    documents: "Tax ID: 45-6789012"
+  }
+];
+
+const mockUsers = [
+  {
+    id: 1,
+    name: "John Smith",
+    email: "john.smith@university.edu",
+    role: "organizer",
+    organization: "Computer Science Club",
+    joinDate: "2024-01-15",
+    status: "active",
+    eventsCreated: 12
+  },
+  {
+    id: 2,
+    name: "Lisa Anderson",
+    email: "lisa.a@university.edu",
+    role: "organizer",
+    organization: "Sports Association",
+    joinDate: "2024-02-20",
+    status: "active",
+    eventsCreated: 8
+  },
+  {
+    id: 3,
+    name: "David Park",
+    email: "d.park@university.edu",
+    role: "viewer",
+    organization: "N/A",
+    joinDate: "2024-09-01",
+    status: "active",
+    eventsCreated: 0
+  },
+  {
+    id: 4,
+    name: "Rachel Green",
+    email: "rachel.g@university.edu",
+    role: "organizer",
+    organization: "Career Services",
+    joinDate: "2023-11-10",
+    status: "active",
+    eventsCreated: 15
+  },
+  {
+    id: 5,
+    name: "Tom Wilson",
+    email: "t.wilson@university.edu",
+    role: "viewer",
+    organization: "N/A",
+    joinDate: "2024-08-25",
+    status: "suspended",
+    eventsCreated: 0
+  },
+  {
+    id: 6,
+    name: "Admin User",
+    email: "admin@university.edu",
+    role: "admin",
+    organization: "Platform Administration",
+    joinDate: "2023-01-01",
+    status: "active",
+    eventsCreated: 5
+  }
+];
+
+const mockOrganizations = [
+  {
+    id: 1,
+    name: "Computer Science Club",
+    status: "active",
+    contactEmail: "cs.club@university.edu",
+    memberCount: 145,
+    eventsHosted: 23,
+    category: "Academic"
+  },
+  {
+    id: 2,
+    name: "Sports Association",
+    status: "active",
+    contactEmail: "sports@university.edu",
+    memberCount: 320,
+    eventsHosted: 18,
+    category: "Sports"
+  },
+  {
+    id: 3,
+    name: "Music Society",
+    status: "active",
+    contactEmail: "music@university.edu",
+    memberCount: 89,
+    eventsHosted: 15,
+    category: "Arts"
+  },
+  {
+    id: 4,
+    name: "Career Services",
+    status: "active",
+    contactEmail: "careers@university.edu",
+    memberCount: 50,
+    eventsHosted: 12,
+    category: "Professional"
+  },
+  {
+    id: 5,
+    name: "Literary Club",
+    status: "active",
+    contactEmail: "lit@university.edu",
+    memberCount: 67,
+    eventsHosted: 10,
+    category: "Arts"
+  },
+  {
+    id: 6,
+    name: "Entrepreneurship Club",
+    status: "active",
+    contactEmail: "startup@university.edu",
+    memberCount: 112,
+    eventsHosted: 8,
+    category: "Professional"
+  }
+];
+
+const organizationsList = [
+  "Computer Science Club",
+  "Sports Association",
+  "Music Society",
+  "Career Services",
+  "Literary Club",
+  "Entrepreneurship Club",
+  "Photography Club",
+  "Debate Society",
+  "Sustainability Initiative"
+];
+
+// Analytics mock data - participation trends over time
+const mockAnalyticsData = {
+  monthlyData: [
+    { month: 'Jan', events: 8, tickets: 850, attendance: 742 },
+    { month: 'Feb', events: 10, tickets: 1020, attendance: 891 },
+    { month: 'Mar', events: 12, tickets: 1180, attendance: 1045 },
+    { month: 'Apr', events: 9, tickets: 920, attendance: 798 },
+    { month: 'May', events: 11, tickets: 1150, attendance: 1012 },
+    { month: 'Jun', events: 7, tickets: 680, attendance: 612 },
+    { month: 'Jul', events: 6, tickets: 580, attendance: 523 },
+    { month: 'Aug', events: 8, tickets: 850, attendance: 765 },
+    { month: 'Sep', events: 14, tickets: 1420, attendance: 1268 },
+    { month: 'Oct', events: 15, tickets: 1550, attendance: 1395 }
+  ],
+  categoryBreakdown: [
+    { category: 'Technology', count: 28, percentage: 28 },
+    { category: 'Sports', count: 22, percentage: 22 },
+    { category: 'Entertainment', count: 18, percentage: 18 },
+    { category: 'Career', count: 20, percentage: 20 },
+    { category: 'Academic', count: 12, percentage: 12 }
+  ],
+  topOrganizations: [
+    { name: 'Computer Science Club', events: 23, tickets: 2850 },
+    { name: 'Sports Association', events: 18, tickets: 2340 },
+    { name: 'Music Society', events: 15, tickets: 1890 },
+    { name: 'Career Services', events: 12, tickets: 1560 }
+  ]
+};
+
+export default function App() {
+  const [currentView, setCurrentView] = useState('events');
+  const [adminTab, setAdminTab] = useState('overview');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filters, setFilters] = useState({
+    date: '',
+    category: '',
+    organization: ''
+  });
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [paymentStep, setPaymentStep] = useState('form');
+  const [paymentForm, setPaymentForm] = useState({
+    email: '',
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+    quantity: 1
+  });
+  const [paymentErrors, setPaymentErrors] = useState({});
+  
+  // Admin state
+  const [events, setEvents] = useState(mockEvents);
+  const [organizerRequests, setOrganizerRequests] = useState(mockOrganizerRequests);
+  const [users, setUsers] = useState(mockUsers);
+  const [organizations, setOrganizations] = useState(mockOrganizations);
+  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [selectedEventForModeration, setSelectedEventForModeration] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedOrganization, setSelectedOrganization] = useState(null);
+  const [moderationNote, setModerationNote] = useState('');
+  
+  // Event creation state
+  const [showEventCreationModal, setShowEventCreationModal] = useState(false);
+  const [editingEvent, setEditingEvent] = useState(null);
+  const [eventForm, setEventForm] = useState({
+    title: '',
+    date: '',
+    time: '',
+    location: '',
+    category: 'Technology',
+    organization: 'Computer Science Club',
+    description: '',
+    ticketType: 'free',
+    price: 0,
+    capacity: 100
+  });
+  const [eventFormErrors, setEventFormErrors] = useState({});
+
+  // Role management modal
+  const [showRoleModal, setShowRoleModal] = useState(false);
+  const [roleEditUser, setRoleEditUser] = useState(null);
+
+  // Organization management modal
+  const [showOrgModal, setShowOrgModal] = useState(false);
+  const [editingOrg, setEditingOrg] = useState(null);
+  const [orgForm, setOrgForm] = useState({
+    name: '',
+    contactEmail: '',
+    category: 'Academic',
+    status: 'active'
+  });
+
+  // Calculate analytics
+  const totalEvents = events.filter(e => e.status === 'approved').length;
+  const pendingEvents = events.filter(e => e.status === 'pending').length;
+  const totalTickets = events.filter(e => e.status === 'approved').reduce((sum, e) => sum + (e.ticketsIssued || 0), 0);
+  const totalAttendees = events.filter(e => e.status === 'approved').reduce((sum, e) => sum + (e.attendees || 0), 0);
+  const avgAttendance = totalTickets > 0 ? Math.round((totalAttendees / totalTickets) * 100) : 0;
+  const totalOrganizers = users.filter(u => u.role === 'organizer').length;
+  const totalAdmins = users.filter(u => u.role === 'admin').length;
+  const totalViewers = users.filter(u => u.role === 'viewer').length;
+  const pendingRequests = organizerRequests.filter(r => r.status === 'pending').length;
+  const activeOrganizations = organizations.filter(o => o.status === 'active').length;
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleFilterChange = (filterType, value) => {
+    setFilters(prev => ({
+      ...prev,
+      [filterType]: value
+    }));
+  };
+
+  const handleClearFilters = () => {
+    setSearchTerm('');
+    setFilters({
+      date: '',
+      category: '',
+      organization: ''
+    });
+  };
+
+  const getTicketPrice = (event) => event.price || 0;
+  
+  const handlePaymentFormChange = (field, value) => {
+    setPaymentForm(prev => ({ ...prev, [field]: value }));
+    if (paymentErrors[field]) {
+      setPaymentErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+  
+  const formatCardNumber = (value) => {
+    const cleaned = value.replace(/\s/g, '');
+    const match = cleaned.match(/.{1,4}/g);
+    return match ? match.join(' ') : cleaned;
+  };
+  
+  const closePaymentModal = () => {
+    setShowPaymentModal(false);
+    setPaymentStep('form');
+    setPaymentForm({
+      email: '',
+      cardNumber: '',
+      expiryDate: '',
+      cvv: '',
+      quantity: 1
+    });
+    setPaymentErrors({});
+  };
+
+  // Admin functions
+  const approveOrganizerRequest = (requestId) => {
+    setOrganizerRequests(prev => prev.map(req => 
+      req.id === requestId ? { ...req, status: 'approved' } : req
+    ));
+    setSelectedRequest(null);
+    alert('Organizer request approved! Welcome email sent.');
+  };
+
+  const rejectOrganizerRequest = (requestId, reason) => {
+    setOrganizerRequests(prev => prev.map(req => 
+      req.id === requestId ? { ...req, status: 'rejected', rejectionReason: reason } : req
+    ));
+    setSelectedRequest(null);
+    alert('Organizer request rejected. Notification email sent.');
+  };
+
+  const approveEvent = (eventId) => {
+    setEvents(prev => prev.map(evt => 
+      evt.id === eventId ? { ...evt, status: 'approved' } : evt
+    ));
+    setSelectedEventForModeration(null);
+    alert('Event approved and published!');
+  };
+
+  const rejectEvent = (eventId, reason) => {
+    setEvents(prev => prev.map(evt => 
+      evt.id === eventId ? { ...evt, status: 'rejected', rejectionReason: reason } : evt
+    ));
+    setSelectedEventForModeration(null);
+    alert('Event rejected. Organizer has been notified.');
+  };
+
+  const suspendUser = (userId, reason) => {
+    setUsers(prev => prev.map(user => 
+      user.id === userId ? { ...user, status: 'suspended', suspensionReason: reason } : user
+    ));
+    setSelectedUser(null);
+    alert('User account suspended.');
+  };
+
+  const reactivateUser = (userId) => {
+    setUsers(prev => prev.map(user => 
+      user.id === userId ? { ...user, status: 'active', suspensionReason: null } : user
+    ));
+    setSelectedUser(null);
+    alert('User account reactivated.');
+  };
+
+  // Role management functions
+  const openRoleModal = (user) => {
+    setRoleEditUser(user);
+    setShowRoleModal(true);
+  };
+
+  const changeUserRole = (userId, newRole, newOrg = null) => {
+    setUsers(prev => prev.map(user => 
+      user.id === userId ? { 
+        ...user, 
+        role: newRole,
+        organization: newOrg || (newRole === 'organizer' ? user.organization : 'N/A')
+      } : user
+    ));
+    setShowRoleModal(false);
+    setRoleEditUser(null);
+    alert(`User role updated to ${newRole}!`);
+  };
+
+  // Organization management functions
+  const openOrgCreationModal = () => {
+    setOrgForm({
+      name: '',
+      contactEmail: '',
+      category: 'Academic',
+      status: 'active'
+    });
+    setEditingOrg(null);
+    setShowOrgModal(true);
+  };
+
+  const openOrgEditModal = (org) => {
+    setOrgForm({
+      name: org.name,
+      contactEmail: org.contactEmail,
+      category: org.category,
+      status: org.status
+    });
+    setEditingOrg(org);
+    setShowOrgModal(true);
+  };
+
+  const createOrUpdateOrganization = () => {
+    if (!orgForm.name.trim() || !orgForm.contactEmail.trim()) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    if (editingOrg) {
+      setOrganizations(prev => prev.map(org => 
+        org.id === editingOrg.id ? { ...org, ...orgForm } : org
+      ));
+      alert('Organization updated successfully!');
+    } else {
+      const newOrg = {
+        id: Math.max(...organizations.map(o => o.id), 0) + 1,
+        ...orgForm,
+        memberCount: 0,
+        eventsHosted: 0
+      };
+      setOrganizations(prev => [...prev, newOrg]);
+      alert('Organization created successfully!');
+    }
+    
+    setShowOrgModal(false);
+    setEditingOrg(null);
+  };
+
+  const deleteOrganization = (orgId) => {
+    if (window.confirm('Are you sure you want to delete this organization? This action cannot be undone.')) {
+      setOrganizations(prev => prev.filter(org => org.id !== orgId));
+      alert('Organization deleted successfully.');
+    }
+  };
+
+  const toggleOrgStatus = (orgId) => {
+    setOrganizations(prev => prev.map(org => 
+      org.id === orgId ? { ...org, status: org.status === 'active' ? 'inactive' : 'active' } : org
+    ));
+  };
+
+  // Event creation functions
+  const handleEventFormChange = (field, value) => {
+    setEventForm(prev => ({ ...prev, [field]: value }));
+    if (eventFormErrors[field]) {
+      setEventFormErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const validateEventForm = () => {
+    const errors = {};
+    if (!eventForm.title.trim()) errors.title = 'Event title is required';
+    if (!eventForm.date) errors.date = 'Event date is required';
+    if (!eventForm.time) errors.time = 'Event time is required';
+    if (!eventForm.location.trim()) errors.location = 'Location is required';
+    if (!eventForm.description.trim()) errors.description = 'Description is required';
+    if (eventForm.ticketType === 'paid' && eventForm.price <= 0) errors.price = 'Price must be greater than 0';
+    
+    setEventFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const openEventCreationModal = () => {
+    setEventForm({
+      title: '',
+      date: '',
+      time: '',
+      location: '',
+      category: 'Technology',
+      organization: 'Computer Science Club',
+      description: '',
+      ticketType: 'free',
+      price: 0,
+      capacity: 100
+    });
+    setEditingEvent(null);
+    setEventFormErrors({});
+    setShowEventCreationModal(true);
+  };
+
+  const openEventEditModal = (event) => {
+    setEventForm({
+      title: event.title,
+      date: event.date,
+      time: event.time,
+      location: event.location,
+      category: event.category,
+      organization: event.organization,
+      description: event.description,
+      ticketType: event.ticketType,
+      price: event.price,
+      capacity: event.capacity || 100
+    });
+    setEditingEvent(event);
+    setEventFormErrors({});
+    setShowEventCreationModal(true);
+  };
+
+  const closeEventCreationModal = () => {
+    setShowEventCreationModal(false);
+    setEditingEvent(null);
+    setEventFormErrors({});
+  };
+
+  const createOrUpdateEvent = () => {
+    if (!validateEventForm()) {
+      alert('Please fill in all required fields correctly.');
+      return;
+    }
+
+    if (editingEvent) {
+      setEvents(prev => prev.map(evt => 
+        evt.id === editingEvent.id 
+          ? { ...evt, ...eventForm, status: 'approved' }
+          : evt
+      ));
+      alert('Event updated successfully!');
+    } else {
+      const newEvent = {
+        id: Math.max(...events.map(e => e.id), 0) + 1,
+        ...eventForm,
+        status: 'approved',
+        organizerId: 0,
+        ticketsIssued: 0,
+        attendees: 0
+      };
+      setEvents(prev => [...prev, newEvent]);
+      alert('Event created successfully!');
+    }
+    
+    closeEventCreationModal();
+  };
+
+  const deleteEvent = (eventId) => {
+    if (window.confirm('Are you sure you want to delete this event? This action cannot be undone.')) {
+      setEvents(prev => prev.filter(evt => evt.id !== eventId));
+      alert('Event deleted successfully.');
+    }
+  };
+
+  const filteredEvents = events.filter(event => {
+    if (event.status !== 'approved') return false;
+    
+    const matchesSearch = searchTerm === '' || 
+      event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      event.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesCategory = filters.category === '' || event.category === filters.category;
+    const matchesOrganization = filters.organization === '' || event.organization === filters.organization;
+
+    let matchesDate = true;
+    if (filters.date === 'upcoming') {
+      const today = new Date('2025-10-06');
+      const eventDate = new Date(event.date);
+      matchesDate = eventDate >= today;
+    } else if (filters.date === 'thisWeek') {
+      const today = new Date('2025-10-06');
+      const weekFromNow = new Date('2025-10-06');
+      weekFromNow.setDate(weekFromNow.getDate() + 7);
+      const eventDate = new Date(event.date);
+      matchesDate = eventDate >= today && eventDate <= weekFromNow;
+    }
+
+    return matchesSearch && matchesCategory && matchesOrganization && matchesDate;
+  });
+
+  // Navigation Bar Component
+  const NavigationBar = () => (
+    <div style={{
+      position: 'sticky',
+      top: 0,
+      zIndex: 100,
+      background: 'linear-gradient(135deg, rgba(15, 23, 41, 0.98) 0%, rgba(30, 41, 59, 0.98) 100%)',
+      backdropFilter: 'blur(10px)',
+      borderBottom: '2px solid rgba(59, 130, 246, 0.3)',
+      padding: '20px 60px',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      gap: '20px'
+    }}>
+      <h1 style={{
+        fontFamily: "'Archivo Black', sans-serif",
+        background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        fontSize: '2rem',
+        textTransform: 'uppercase',
+        margin: 0
+      }}>CampusEvents</h1>
+      
+      <div style={{ display: 'flex', gap: '15px' }}>
+        <button
+          onClick={() => {
+            setCurrentView('events');
+            setSelectedEvent(null);
+          }}
+          style={{
+            padding: '12px 25px',
+            background: currentView === 'events' 
+              ? 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)'
+              : 'transparent',
+            color: 'white',
+            border: currentView === 'events' ? 'none' : '2px solid #3b82f6',
+            borderRadius: '10px',
+            fontSize: '1rem',
+            fontWeight: '700',
+            cursor: 'pointer',
+            textTransform: 'uppercase',
+            transition: 'all 0.3s ease'
+          }}
+        >🎉 Events</button>
+        
+        <button
+          onClick={() => {
+            setCurrentView('admin');
+            setAdminTab('overview');
+          }}
+          style={{
+            padding: '12px 25px',
+            background: currentView === 'admin' 
+              ? 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)'
+              : 'transparent',
+            color: 'white',
+            border: currentView === 'admin' ? 'none' : '2px solid #8b5cf6',
+            borderRadius: '10px',
+            fontSize: '1rem',
+            fontWeight: '700',
+            cursor: 'pointer',
+            textTransform: 'uppercase',
+            transition: 'all 0.3s ease',
+            position: 'relative'
+          }}
+        >
+          👑 Admin
+          {(pendingRequests + pendingEvents) > 0 && (
+            <span style={{
+              position: 'absolute',
+              top: '-8px',
+              right: '-8px',
+              background: '#ef4444',
+              color: 'white',
+              borderRadius: '50%',
+              width: '24px',
+              height: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '0.75rem',
+              fontWeight: '900'
+            }}>{pendingRequests + pendingEvents}</span>
+          )}
+        </button>
+      </div>
+    </div>
+  );
+
+  // Payment Modal Component
+  const PaymentModal = () => (
+    showPaymentModal && selectedEvent && (
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'rgba(0, 0, 0, 0.85)',
+        backdropFilter: 'blur(10px)',
+        zIndex: 1000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px'
+      }}>
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(20, 27, 45, 0.98) 100%)',
+          border: '3px solid transparent',
+          borderRadius: '25px',
+          padding: '50px',
+          maxWidth: '600px',
+          width: '100%',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          position: 'relative',
+          backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(20, 27, 45, 0.98) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+          backgroundOrigin: 'border-box',
+          backgroundClip: 'padding-box, border-box'
+        }}>
+          <button
+            onClick={closePaymentModal}
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              background: 'rgba(239, 68, 68, 0.2)',
+              border: '2px solid #ef4444',
+              color: '#ef4444',
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              fontSize: '1.5rem',
+              cursor: 'pointer',
+              fontWeight: '700',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >×</button>
+
+          <h2 style={{
+            fontFamily: "'Archivo Black', sans-serif",
+            background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            fontSize: '2.5rem',
+            marginBottom: '10px',
+            textTransform: 'uppercase'
+          }}>Complete Purchase</h2>
+          
+          <p style={{
+            color: '#cbd5e1',
+            fontSize: '1.1rem',
+            marginBottom: '30px',
+            fontWeight: '500'
+          }}>{selectedEvent.title}</p>
+
+          <div style={{
+            background: 'rgba(59, 130, 246, 0.1)',
+            border: '2px solid #3b82f6',
+            borderRadius: '15px',
+            padding: '20px',
+            marginBottom: '30px'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ color: '#cbd5e1', fontSize: '1rem' }}>Price per ticket:</span>
+              <span style={{ color: '#fff', fontSize: '1.1rem', fontWeight: '700' }}>${getTicketPrice(selectedEvent)}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+              <span style={{ color: '#cbd5e1', fontSize: '1rem' }}>Quantity:</span>
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <button
+                  onClick={() => handlePaymentFormChange('quantity', Math.max(1, paymentForm.quantity - 1))}
+                  style={{
+                    background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
+                    border: 'none',
+                    color: 'white',
+                    width: '30px',
+                    height: '30px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontWeight: '700'
+                  }}
+                >-</button>
+                <span style={{ color: '#fff', fontSize: '1.1rem', fontWeight: '700', minWidth: '30px', textAlign: 'center' }}>{paymentForm.quantity}</span>
+                <button
+                  onClick={() => handlePaymentFormChange('quantity', Math.min(10, paymentForm.quantity + 1))}
+                  style={{
+                    background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
+                    border: 'none',
+                    color: 'white',
+                    width: '30px',
+                    height: '30px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontWeight: '700'
+                  }}
+                >+</button>
+              </div>
+            </div>
+            <div style={{ borderTop: '2px solid rgba(59, 130, 246, 0.3)', paddingTop: '10px', marginTop: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: '#06b6d4', fontSize: '1.2rem', fontWeight: '700', textTransform: 'uppercase' }}>Total:</span>
+                <span style={{ color: '#84cc16', fontSize: '1.5rem', fontWeight: '900' }}>${(getTicketPrice(selectedEvent) * paymentForm.quantity).toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Email Address</label>
+            <input
+              type="email"
+              value={paymentForm.email}
+              onChange={(e) => handlePaymentFormChange('email', e.target.value)}
+              placeholder="your.email@university.edu"
+              style={{
+                width: '100%',
+                padding: '12px 15px',
+                background: 'rgba(15, 23, 41, 0.9)',
+                border: paymentErrors.email ? '2px solid #ef4444' : '2px solid #475569',
+                borderRadius: '10px',
+                color: 'white',
+                fontSize: '1rem',
+                fontFamily: "'Space Grotesk', sans-serif"
+              }}
+            />
+            {paymentErrors.email && <span style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '5px', display: 'block' }}>{paymentErrors.email}</span>}
+          </div>
+
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ display: 'block', color: '#3b82f6', fontWeight: '700', marginBottom: '8px', fontSize: '0.9rem', textTransform: 'uppercase' }}>Card Number</label>
+            <input
+              type="text"
+              value={paymentForm.cardNumber}
+              onChange={(e) => handlePaymentFormChange('cardNumber', formatCardNumber(e.target.value))}
+              placeholder="1234 5678 9012 3456"
+              maxLength="19"
+              style={{
+                width: '100%',
+                padding: '12px 15px',
+                background: 'rgba(15, 23, 41, 0.9)',
+                border: paymentErrors.cardNumber ? '2px solid #ef4444' : '2px solid #475569',
+                borderRadius: '10px',
+                color: 'white',
+                fontSize: '1rem',
+                fontFamily: "'Space Grotesk', sans-serif"
+              }}
+            />
+            {paymentErrors.cardNumber && <span style={{ color: '#ef4444', fontSize: '0.85rem', marginTop: '5px', display: 'block' }}>{paymentErrors.cardNumber}</span>}
+          </div>
+
+          <button
+            onClick={() => alert('Payment processing would happen here!')}
+            style={{
+              width: '100%',
+              padding: '15px',
+              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '12px',
+              fontSize: '1.2rem',
+              fontWeight: '700',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
+              marginTop: '20px'
+            }}
+          >Complete Purchase</button>
+        </div>
+      </div>
+    )
+  );
+
+  // Event Creation/Edit Modal Component
+  const EventCreationModal = () => (
+    showEventCreationModal && (
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'rgba(0, 0, 0, 0.85)',
+        backdropFilter: 'blur(10px)',
+        zIndex: 1000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
+        overflowY: 'auto'
+      }}>
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(20, 27, 45, 0.98) 100%)',
+          border: '3px solid transparent',
+          borderRadius: '25px',
+          padding: '50px',
+          maxWidth: '800px',
+          width: '100%',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          position: 'relative',
+          backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(20, 27, 45, 0.98) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+          backgroundOrigin: 'border-box',
+          backgroundClip: 'padding-box, border-box',
+          margin: '20px auto'
+        }}>
