@@ -2999,3 +2999,499 @@ export default function App() {
  textTransform: 'uppercase',
  transition: 'all 0.3s ease'
  }}
+ >✓ Approve Event</button>
+
+             <button
+                          onClick={() => {
+                            const reason = prompt('Enter rejection reason:');
+                            if (reason) rejectEvent(event.id, reason);
+                          }}
+                          style={{
+                            flex: 1,
+                            minWidth: '150px',
+                            padding: '15px 30px',
+                            background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '12px',
+                            fontSize: '1.1rem',
+                            fontWeight: '700',
+                            cursor: 'pointer',
+                            textTransform: 'uppercase',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >✗ Reject Event</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // Event Detail View
+  if (selectedEvent) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        background: '#0f1729',
+        fontFamily: "'Space Grotesk', sans-serif",
+        color: 'white'
+      }}>
+        <NavigationBar />
+        <PaymentModal />
+        
+        <div style={{
+          padding: '60px 40px',
+          position: 'relative'
+        }}>
+          <div style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            position: 'relative',
+            zIndex: 1
+          }}>
+            <button 
+              onClick={() => setSelectedEvent(null)}
+              style={{
+                padding: '15px 30px',
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '12px',
+                fontSize: '1.1rem',
+                fontWeight: '700',
+                cursor: 'pointer',
+                marginBottom: '40px',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                boxShadow: '0 5px 20px rgba(139, 92, 246, 0.4)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              ← Back to Events
+            </button>
+            
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+              border: '3px solid transparent',
+              borderRadius: '25px',
+              padding: '50px',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
+              position: 'relative',
+              transform: 'rotate(-0.5deg)',
+              backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+              backgroundOrigin: 'border-box',
+              backgroundClip: 'padding-box, border-box'
+            }}>
+              <h1 style={{
+                fontFamily: "'Archivo Black', sans-serif",
+                background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontSize: '3rem',
+                marginBottom: '30px',
+                letterSpacing: '-2px',
+                textTransform: 'uppercase'
+              }}>{selectedEvent.title}</h1>
+              
+              <div style={{ marginBottom: '30px', paddingBottom: '30px', borderBottom: '2px solid rgba(6, 182, 212, 0.3)' }}>
+                <span style={{
+                  padding: '8px 16px',
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
+                  color: 'white',
+                  borderRadius: '25px',
+                  fontSize: '0.9rem',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  display: 'inline-block',
+                  marginRight: '10px'
+                }}>{selectedEvent.category}</span>
+                
+                <span style={{
+                  padding: '8px 16px',
+                  background: selectedEvent.ticketType === 'free' 
+                    ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+                    : 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                  color: 'white',
+                  borderRadius: '25px',
+                  fontSize: '0.9rem',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  display: 'inline-block'
+                }}>{selectedEvent.ticketType === 'free' ? 'FREE EVENT' : $${selectedEvent.price}}</span>
+              </div>
+
+              <div style={{ marginBottom: '40px' }}>
+                {[
+                  { icon: '📅', label: 'Date', value: selectedEvent.date },
+                  { icon: '🕐', label: 'Time', value: selectedEvent.time },
+                  { icon: '📍', label: 'Location', value: selectedEvent.location },
+                  { icon: '🏢', label: 'Organization', value: selectedEvent.organization }
+                ].map((item, i) => (
+                  <div key={i} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginBottom: '20px',
+                    padding: '15px',
+                    background: 'rgba(59, 130, 246, 0.1)',
+                    borderLeft: '4px solid #3b82f6',
+                    borderRadius: '10px'
+                  }}>
+                    <span style={{ fontSize: '2rem', marginRight: '15px' }}>{item.icon}</span>
+                    <div>
+                      <div style={{ color: '#06b6d4', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', marginBottom: '5px' }}>{item.label}</div>
+                      <div style={{ color: '#e2e8f0', fontSize: '1.2rem', fontWeight: '600' }}>{item.value}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{
+                background: 'rgba(6, 182, 212, 0.1)',
+                border: '2px solid #06b6d4',
+                borderRadius: '15px',
+                padding: '30px',
+                marginBottom: '40px'
+              }}>
+                <h3 style={{
+                  color: '#06b6d4',
+                  fontSize: '1.3rem',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  marginBottom: '15px'
+                }}>About This Event</h3>
+                <p style={{
+                  color: '#e2e8f0',
+                  lineHeight: '1.8',
+                  fontSize: '1.1rem'
+                }}>{selectedEvent.description}</p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => setShowPaymentModal(true)}
+                  style={{
+                    flex: 1,
+                    minWidth: '200px',
+                    padding: '20px 30px',
+                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '15px',
+                    fontSize: '1.2rem',
+                    fontWeight: '700',
+                    cursor: 'pointer',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    boxShadow: '0 5px 20px rgba(16, 185, 129, 0.4)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  {selectedEvent.ticketType === 'free' ? '🎫 Register Now' : '💳 Buy Tickets'}
+                </button>
+                
+                <button
+                  style={{
+                    padding: '20px 30px',
+                    background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '15px',
+                    fontSize: '1.2rem',
+                    fontWeight: '700',
+                    cursor: 'pointer',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    boxShadow: '0 5px 20px rgba(59, 130, 246, 0.4)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  ❤️ Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Main Events Listing View
+  return (
+    <div style={{
+      minHeight: '100vh',
+      background: '#0f1729',
+      color: 'white',
+      fontFamily: "'Space Grotesk', sans-serif"
+    }}>
+      <NavigationBar />
+      
+      <div style={{
+        background: 'linear-gradient(135deg, #0f1729 0%, #1e293b 100%)',
+        padding: '80px 60px',
+        borderBottom: '2px solid rgba(6, 182, 212, 0.3)',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <h1 style={{
+          fontFamily: "'Archivo Black', sans-serif",
+          background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          fontSize: '4.5rem',
+          marginBottom: '20px',
+          letterSpacing: '-3px',
+          textTransform: 'uppercase',
+          transform: translateY(${scrollY / 5}px)
+        }}>Campus Events</h1>
+        
+        <p style={{
+          fontSize: '1.5rem',
+          color: '#cbd5e1',
+          fontWeight: '500',
+          letterSpacing: '2px',
+          textTransform: 'uppercase'
+        }}>Discover Amazing Experiences</p>
+      </div>
+
+      <div style={{
+        background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(20, 27, 45, 0.9) 100%)',
+        padding: '40px 60px',
+        position: 'sticky',
+        top: '80px',
+        zIndex: 50,
+        backdropFilter: 'blur(10px)',
+        borderBottom: '2px solid rgba(59, 130, 246, 0.3)'
+      }}>
+        <input
+          type="text"
+          placeholder="🔍 Search events..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '20px 25px',
+            fontSize: '1.2rem',
+            border: '3px solid #3b82f6',
+            borderRadius: '15px',
+            marginBottom: '30px',
+            background: 'rgba(15, 23, 41, 0.9)',
+            color: 'white',
+            fontWeight: '500',
+            fontFamily: "'Space Grotesk', sans-serif"
+          }}
+        />
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '20px',
+          marginBottom: '20px'
+        }}>
+          {[
+            { label: 'Date', options: ['All Dates', 'upcoming', 'thisWeek'] },
+            { label: 'Category', options: ['All Categories', 'Technology', 'Sports', 'Entertainment', 'Career', 'Academic'] },
+            { label: 'Organization', options: ['All Organizations', 'Computer Science Club', 'Sports Association', 'Music Society', 'Career Services', 'Literary Club'] }
+          ].map((filter, idx) => (
+            <div key={idx}>
+              <label style={{
+                display: 'block',
+                color: '#3b82f6',
+                fontWeight: '700',
+                marginBottom: '10px',
+                fontSize: '0.9rem',
+                textTransform: 'uppercase',
+                letterSpacing: '1px'
+              }}>{filter.label}</label>
+              <select
+                value={filters[filter.label.toLowerCase()]}
+                onChange={(e) => handleFilterChange(filter.label.toLowerCase(), e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '12px 15px',
+                  fontSize: '1rem',
+                  border: '2px solid #475569',
+                  borderRadius: '10px',
+                  background: 'rgba(15, 23, 41, 0.9)',
+                  color: 'white',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  fontFamily: "'Space Grotesk', sans-serif"
+                }}
+              >
+                {filter.options.map(opt => (
+                  <option key={opt} value={opt === filter.options[0] ? '' : opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={handleClearFilters}
+          style={{
+            padding: '15px 35px',
+            background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '12px',
+            fontSize: '1.1rem',
+            fontWeight: '700',
+            cursor: 'pointer',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            boxShadow: '0 5px 20px rgba(249, 115, 22, 0.4)',
+            transition: 'all 0.3s ease'
+          }}
+        >
+          Clear All Filters
+        </button>
+      </div>
+
+      <div style={{ padding: '60px' }}>
+        <div style={{
+          marginBottom: '40px',
+          fontSize: '1.5rem',
+          color: '#06b6d4',
+          fontWeight: '700',
+          textTransform: 'uppercase',
+          letterSpacing: '2px'
+        }}>
+          Showing {filteredEvents.length} event{filteredEvents.length !== 1 ? 's' : ''}
+        </div>
+
+        {filteredEvents.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '100px 40px', color: '#06b6d4' }}>
+            <p style={{ fontSize: '1.8rem', marginBottom: '20px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px' }}>No events found</p>
+            <p style={{ fontSize: '1.2rem', color: '#cbd5e1', fontWeight: '500' }}>Try adjusting your filters or search terms</p>
+          </div>
+        ) : (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+            gap: '40px'
+          }}>
+            {filteredEvents.map((event, idx) => (
+              <div
+                key={event.id}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%)',
+                  borderRadius: '20px',
+                  padding: '30px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  transform: rotate(${idx % 2 === 0 ? '-1deg' : '1deg'}) translateY(${Math.max(0, scrollY / 50 - idx * 2)}px),
+                  transition: 'all 0.4s ease',
+                  cursor: 'pointer',
+                  border: '3px solid transparent',
+                  backgroundImage: 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(20, 27, 45, 0.95) 100%), linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%)',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'padding-box, border-box',
+                  opacity: 1
+                }}
+              >
+                <h3 style={{
+                  fontFamily: "'Archivo Black', sans-serif",
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #84cc16 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  marginBottom: '20px',
+                  fontSize: '1.8rem',
+                  letterSpacing: '-1px',
+                  textTransform: 'uppercase'
+                }}>{event.title}</h3>
+
+                <div style={{ marginBottom: '20px' }}>
+                  {[
+                    { icon: '📅', label: 'Date:', value: event.date },
+                    { icon: '🕐', label: 'Time:', value: event.time },
+                    { icon: '📍', label: 'Location:', value: event.location },
+                    { icon: '🏢', label: 'Org:', value: event.organization }
+                  ].map((item, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'center', marginBottom: '12px', color: '#cbd5e1', fontSize: '1rem', fontWeight: '500' }}>
+                      <strong style={{ color: '#06b6d4', marginRight: '10px', minWidth: '100px', fontWeight: '700' }}>{item.icon} {item.label}</strong>
+                      <span>{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <p style={{ color: '#e2e8f0', lineHeight: '1.7', marginBottom: '20px', fontWeight: '500' }}>{event.description}</p>
+
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '20px' }}>
+                  <span style={{
+                    padding: '8px 16px',
+                    background: 'linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%)',
+                    color: 'white',
+                    borderRadius: '25px',
+                    fontSize: '0.9rem',
+                    fontWeight: '700',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>{event.category}</span>
+                  <span style={{
+                    padding: '8px 16px',
+                    background: event.ticketType === 'free' 
+                      ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+                      : 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                    color: 'white',
+                    borderRadius: '25px',
+                    fontSize: '0.9rem',
+                    fontWeight: '700',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>{event.ticketType === 'free' ? 'FREE' : $${event.price}}</span>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <button
+                    onClick={() => setSelectedEvent(event)}
+                    style={{
+                      flex: 1,
+                      padding: '15px 25px',
+                      background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '12px',
+                      fontSize: '1rem',
+                      fontWeight: '700',
+                      cursor: 'pointer',
+                      textTransform: 'uppercase',
+                      letterSpacing: '1px',
+                      boxShadow: '0 5px 20px rgba(59, 130, 246, 0.4)',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >View Details</button>
+                  <button 
+                    style={{
+                      flex: 1,
+                      padding: '15px 25px',
+                      background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '12px',
+                      fontSize: '1rem',
+                      fontWeight: '700',
+                      cursor: 'pointer',
+                      textTransform: 'uppercase',
+                      letterSpacing: '1px',
+                      boxShadow: '0 5px 20px rgba(16, 185, 129, 0.4)',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >Save Event</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
