@@ -1,1 +1,13 @@
+Issues: #4, #5, #6 – Organizer Event Creation, Organizer Dashboard & QR Validation
 
+Activities:
+
+US04 – Organizer Event Creation Form: Built EventForm.jsx to allow organizers to create new events by entering details (title, description, date/time, location, capacity, and ticket type). Added frontend validation for required fields and integrated the form with mock state storage to append new events to the list dynamically. Ensured the form was fully responsive and consistent with the existing UI theme.
+
+US05 – Organizer Dashboard with Event Stats: Developed OrganizerDashboard.jsx to display key statistics for each event (tickets issued, remaining capacity). Linked mock data from the frontend state to render stats dynamically. Implemented basic chart and counter components for visual representation of event performance and tested updates after ticket claims.
+
+US06 – QR Code Validation Tool: Integrated QR code validation workflow to allow organizers to scan or upload a ticket QR image and verify its authenticity. Implemented mock backend logic to handle validation results and display confirmation messages. Improved error handling for invalid QR inputs and ensured smooth user interaction.
+
+Additionally, configured the backend environment (.env) for port 5001, resolved server conflicts and MongoDB connection issues, and pushed final feature branch (feature2-fady) to GitHub with organized file structure. Coordinated testing with team to verify Organizer features and system integration.
+
+Time Spent: ~14 hours (6 h implementation + 5 h testing and debugging + 3 h integration and repo cleanup)
