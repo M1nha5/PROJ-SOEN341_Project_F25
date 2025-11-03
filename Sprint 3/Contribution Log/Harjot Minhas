@@ -1,1 +1,27 @@
+Harjot Minhas
 
+Issues: #6 – Administrator Dashboard & Moderation, Full System Integration (Frontend + Backend)
+
+Activities:
+
+US06 – Administrator Dashboard & Moderation:
+Implemented the Administrator Dashboard for managing event moderation and organizer approval. Created frontend components for displaying pending organizer requests and event listings with “Approve,” “Reject,” and “Remove” functionalities.
+Integrated mock JSON data for organizer accounts and event records to simulate backend interactions. Added responsive UI design using CSS modules and ensured clear visual feedback for admin actions.
+
+System Integration (Frontend ↔ Backend):
+Connected the frontend React components with the Node.js/Express backend API. Configured REST endpoints for event management and verification between both systems.
+Set up proper CORS configuration, environment variables, and MongoDB connection to ensure reliable data exchange.
+Verified that all CRUD operations (event creation, ticket claiming, and moderation updates) flow smoothly between the frontend and backend.
+
+Debugged endpoint mismatches and ensured the frontend successfully consumes backend data (e.g., event list rendering, ticket creation, and organizer moderation).
+Conducted end-to-end testing to confirm the server (port 5001) and client (port 5173) communicate properly.
+
+Refactoring & Testing:
+
+Helped standardize API routes and response structures between backend modules (eventRoutes.js, organizerRoutes.js).
+
+Tested integration workflows, including admin event approval and student ticket claiming, to verify full-stack stability.
+
+Resolved cross-origin and async request issues during data fetch operations.
+
+Time Spent: ~13 hours (6 h implementation + 4 h integration + 3 h testing/debugging)
