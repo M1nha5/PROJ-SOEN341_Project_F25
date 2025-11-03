@@ -1,1 +1,30 @@
+## Ahmad Al Habbal  
+**Issue:** #8 – Admin Dashboard & Event Management  
+**Activities:**  
+- Created branch US08--Issue-#8 and implemented the AdminDashboard.jsx and related components.  
+- Developed comprehensive mock datasets for events, organizer requests, users, and organizations to simulate backend data.  
+- Built interactive admin tools for approving/rejecting events and organizer requests, suspending users, and editing organizations.  
+- Added dynamic analytics overview cards (total events, tickets issued, attendance rate, active orgs).  
+- Implemented event creation/edit modal with validation and integrated payment modal for ticket purchases.  
+- Optimized state updates and mock API flows for smooth UI interactions.  
+- Coordinated frontend merges and pull requests with team members to align branch naming and issue links.  
+**Time Spent:** ≈ 8 hours (5 h implementation + 2 h UI integration + 1 h testing/debugging)  
+
+---
+
+## Ahmad Al Habbal  
+**Issue:** #3 – Sprint 3 Meeting Minutes Documentation  
+**Activities:**  
+- Drafted and formatted three official meeting minute documents for Sprint 3 (Meetings #1–#3).  
+- Updated templates to match Sprint 2 layout with correct headers, team table, and action items.  
+- Adjusted Meeting #3 date to November 2, 2025 and set location as “Online (Microsoft Teams)”.  
+- Verified consistency in file naming (`PROJ_Sprint3_Meeting#_formatted.pdf`) and submitted to GitHub.  
+**Time Spent:** ≈ 2.25 hours (3 × 0.75 h per meeting)  
+
+---
+
+## Ahmad Al Habbal  
+**Issue:** #2 – Administrative & GitHub Coordination  
+**Activities:**  
+- Organized repository structure
 
