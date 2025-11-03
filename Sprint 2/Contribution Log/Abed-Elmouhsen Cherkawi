@@ -11,4 +11,4 @@ Designed and tested the email template, including subject, message body, and opt
 Ensured that all outgoing emails include event title, date, time, and location, and implemented console logging for delivery confirmation and error tracking.
 Collaborated with backend teammates to synchronize notification triggers with the event and ticket APIs, ensuring a seamless flow between registration and confirmation.
 
-Time Spent: ~9 hours (4 h implementation + 3 h debugging + 2 h testing & integration)
+Time Spent: ~7 hours (4 h implementation + 3 h debugging)

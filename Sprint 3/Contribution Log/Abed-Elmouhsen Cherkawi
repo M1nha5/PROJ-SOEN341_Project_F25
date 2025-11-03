@@ -1,1 +1,16 @@
+Issues: #8, #9, #10 – Admin Approval & Moderation, Admin Stats Dashboard & Email Confirmation for Event Registration
 
+Activities:
+
+US08 – Admin Approval & Moderation Tools:
+Worked on AdminDashboard.jsx to let admins manage organizer requests and events. Added two sections: pending organizer approvals (with Approve/Reject buttons) and event moderation (Remove button). Used mock state to update UI instantly when approving, rejecting, or removing an entry. Kept layout simple and consistent with the project style.
+
+US09 – Admin Global Analytics Dashboard:
+Created AdminAnalytics.jsx to show high-level platform stats such as number of events, total claimed tickets, and participation trends. Used Recharts to render graphs (bar/pie). Hooked into existing state so data updates automatically. Tested for responsiveness to make sure charts behave properly on different screen sizes.
+
+US10 – Email Notification on Event Registration:
+Set up Nodemailer on the backend and built a sendEmail.js utility to send confirmation emails after ticket registration. Hooked it into the /tickets/claim route so emails fire automatically. Email includes basic event details and QR when available. Tested sending, logging, and made sure failures don't crash the app.
+
+Also handled .env setup for email creds, and tested with teammates to confirm admin actions & email flow worked as expected.
+
+Time Spent: ~14 hours (6h coding + 5h testing/fixing + 3h cleanup & integration)
