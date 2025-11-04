@@ -1,1 +1,16 @@
+Issues: #4, #5, #6 – Organizer Event Creation, Organizer Dashboard & QR Validation
 
+Activities:
+
+US04 – Organizer Event Creation Form (Frontend):
+Implemented the complete frontend interface for event creation using React. Developed EventForm.jsx to allow organizers to input event details such as title, description, date/time, location, capacity, and ticket type (free or paid). Added input validation and form error feedback for missing or invalid fields. Integrated the form submission logic with the local mock data storage to dynamically display newly created events on the organizer dashboard. Ensured consistent UI styling, responsiveness across screen sizes, and proper alignment with the project’s design system.
+
+US05 – Organizer Dashboard and Event Analytics (Frontend):
+Developed OrganizerDashboard.jsx to present key event analytics and statistics, including tickets issued, attendance rate, and remaining capacity. Implemented dynamic rendering of stats through state updates after event creation. Added chart and counter components for data visualization and ensured smooth updates during interactions. Focused on frontend data flow and component communication to maintain UI consistency and reactivity.
+
+US06 – QR Code Validation Tool (Frontend):
+Built the user interface for the QR Validation Tool, allowing organizers to upload or scan QR codes for ticket verification. Designed the upload interface with clear visual feedback for valid and invalid QR codes. Simulated the validation process with mock responses and displayed the outcome in a confirmation modal. Improved user experience by adding progress indicators and error handling for unreadable or corrupted QR codes.
+
+Additionally, contributed to frontend structure optimization by organizing component folders, cleaning unused imports, and standardizing CSS modules for maintainability. Collaborated closely with teammates to align API integration points and tested all implemented components to ensure a seamless user flow across Organizer features.
+
+Time Spent: ~13 hours (7 h implementation + 4 h debugging/testing + 2 h UI refinement and collaboration)
