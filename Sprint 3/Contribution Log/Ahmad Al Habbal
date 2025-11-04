@@ -1,1 +1,33 @@
+## Ahmad Al Habbal  
+**Task:** Admin Dashboard & Event Management  
+**Activities:**  
+- Created the admin dashboard interface and integrated it with the event listing system.  
+- Designed and implemented dynamic mock data for events, users, organizer requests, and organizations.  
+- Developed tools for approving/rejecting events, moderating organizer accounts, and managing users.  
+- Added interactive analytics overview cards (total events, tickets issued, attendance rate, active orgs).  
+- Built event creation and payment modals with validation and responsive UI design.  
+- Optimized state management, mock API logic, and UI responsiveness for a seamless user experience.  
+- Coordinated frontend merges, code reviews, and branch organization as team leader.  
+**Time Spent:** ~8 hours (5 h implementation + 2 h testing/debugging + 1 h review/coordination).  
 
+---
+
+## Ahmad Al Habbal  
+**Task:** Sprint 3 Meeting Minutes Documentation  
+**Activities:**  
+- Prepared and formatted three official meeting-minute files for Sprint 3 (Meetings #1 – #3).  
+- Updated the layout to match Sprint 2 standards with consistent headers, tables, and action items.  
+- Adjusted meeting information (dates, team attendance, location set to Online – Microsoft Teams).  
+- Proof-checked clarity, grammar, and uniform formatting before uploading to the repository.  
+**Time Spent:** ~2.25 hours (0.75 h per meeting × 3).  
+
+---
+
+## Ahmad Al Habbal  
+**Task:** Administrative & GitHub Coordination  
+**Activities:**  
+- Managed the repository structure and milestone tracking for Sprint 3.  
+- Reviewed and merged pull requests, ensuring consistent branch names and commit messages.  
+- Helped teammates with local branch setup, Git commands, and resolving merge conflicts.  
+- Verified that all sprint documentation and code updates were correctly linked to the project milestone.  
+**Time Spent:** ~1 hour (0.5 h repo cleanup + 0.5 h milestone setup).  
