@@ -3,6 +3,8 @@ const Ticket = require("../models/Ticket");
 const Event = require("../models/Event");
 const generateQR = require("../utils/generateQR");
 
+
+
 // POST /api/tickets/claim
 const claimTicket = async (req, res) => {
     try {
