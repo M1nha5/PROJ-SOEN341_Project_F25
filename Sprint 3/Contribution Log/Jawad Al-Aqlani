@@ -1,1 +1,11 @@
+Issues: #7, #8, #9 – Organizer Event Creation, Dashboard & QR Validation
 
+Activities:
+Developed and refined multiple frontend components for the Organizer interface using React.
+	•	US07 – Event Creation Form: Built and styled EventForm.jsx with validation, responsive layout, and mock data integration to display newly created events on the dashboard.
+	•	US08 – Organizer Dashboard: Contributed to OrganizerDashboard.jsx, implementing dynamic stats, charts, and counters for real-time event analytics.
+	•	US09 – QR Validation Tool: Helped design and test the QR upload/scan UI, integrated mock validation logic, and improved user feedback for invalid codes.
+
+Also optimized component structure, standardized CSS modules, and coordinated with teammates for API alignment and UI testing.
+
+Time Spent: ~12 hours (6h implementation + 4h testing + 2h collaboration)
