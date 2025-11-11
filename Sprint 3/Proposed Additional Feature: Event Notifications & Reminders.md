@@ -40,12 +40,12 @@ This enhances engagement and user satisfaction, reducing missed events and helpi
 
 | # | Task                       | Description                                                                                    | Assigned To | Status    |
 | - | -------------------------- | ---------------------------------------------------------------------------------------------- | ----------- | --------- |
-| 1 | Setup Notification Schema  | Create `Notification` model with `type`, `message`, `recipientId`, `eventId`, and `timestamp`. | Backend     | ⏳ Pending |
-| 2 | Integrate Nodemailer       | Configure SMTP or use existing mail setup to send email reminders.                             | Backend     | ⏳ Pending |
-| 3 | Schedule Reminders         | Use Node cron job (`node-cron`) to trigger reminders 24 hours before event time.               | Backend     | ⏳ Pending |
-| 4 | Organizer Dashboard Button | Add UI option to “Send Update” for an event.                                                   | Frontend    | ⏳ Pending |
-| 5 | Admin Logs Page            | Display all notifications with filters (by date or sender).                                    | Frontend    | ⏳ Pending |
-| 6 | Testing                    | Write Jest + Supertest integration tests for reminder scheduling and notification APIs.        | QA          | ⏳ Pending |
+| 1 | Setup Notification Schema  | Create `Notification` model with `type`, `message`, `recipientId`, `eventId`, and `timestamp`. | Backend     |  Pending |
+| 2 | Integrate Nodemailer       | Configure SMTP or use existing mail setup to send email reminders.                             | Backend     |  Pending |
+| 3 | Schedule Reminders         | Use Node cron job (`node-cron`) to trigger reminders 24 hours before event time.               | Backend     |  Pending |
+| 4 | Organizer Dashboard Button | Add UI option to “Send Update” for an event.                                                   | Frontend    |  Pending |
+| 5 | Admin Logs Page            | Display all notifications with filters (by date or sender).                                    | Frontend    |  Pending |
+| 6 | Testing                    | Write Jest + Supertest integration tests for reminder scheduling and notification APIs.        | QA          |  Pending |
 
 ## Risk Analysis
 
