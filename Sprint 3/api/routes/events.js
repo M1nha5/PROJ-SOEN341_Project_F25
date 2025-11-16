@@ -13,6 +13,8 @@ const r = Router();
  * Public list with optional filters: q, category, orgId, from, to
  */
 r.get("/", async (req, res) => {
+    console.log("🟦 /events called");
+
     const { q, category, orgId, from, to } = req.query;
     const filter = {};
 
@@ -27,8 +29,13 @@ r.get("/", async (req, res) => {
     }
 
     const events = await Event.find(filter).sort({ startTime: 1 }).limit(100);
+
+    console.log("🟩 EVENTS FOUND:", events.length);
+    console.log(events);
+
     res.json(events);
 });
+
 
 /**
  * GET /events/:id
