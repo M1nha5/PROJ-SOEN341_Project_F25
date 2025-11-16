@@ -62,7 +62,7 @@ export default function AdminEventsPage() {
                     {events.map(ev => (
                         <tr key={ev._id} className="border-t">
                             <td className="p-3">{ev.title}</td>
-                            <td className="p-3">{ev.organizer?.name || "—"}</td>
+                            <td className="p-3">{ev.organization?.name || "—"}</td>
                             <td className="p-3">{new Date(ev.startTime).toLocaleString()}</td>
                             <td className="p-3">{new Date(ev.endTime).toLocaleString()}</td>
                             <td className="p-3 capitalize">{ev.status}</td>
