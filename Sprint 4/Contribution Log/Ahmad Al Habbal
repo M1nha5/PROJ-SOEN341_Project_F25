@@ -1,1 +1,37 @@
+## Ahmad Al Habbal  
+**Task:** Final Integration, Admin Dashboard Polishing & System QA  
+**Activities:**  
+- Completed final UI polishing for the admin dashboard, ensuring consistent spacing, alignment, and responsiveness.  
+- Improved global analytics card logic and synced statistics with refined mock API data.  
+- Enhanced moderation workflows for approving/rejecting events and organizer accounts with better confirmation prompts.  
+- Refined event management components including filtering, sorting, and event-details preview.  
+- Contributed to completing full integration between Student → Organizer → Admin flows.  
+- Performed UI/UX consistency checks across the entire dashboard to match project standards.  
+- Conducted exploratory testing, logged issues, and applied fixes for UI and state-management bugs.  
+- Coordinated final frontend merges, reviewed PRs, and ensured a stable build before submission.  
+**Time Spent:** ~9 hours (6 h implementation + 2 h QA/testing + 1 h coordination)
+
+---
+
+## Ahmad Al Habbal  
+**Task:** Sprint 4 Meeting Minutes Documentation  
+**Activities:**  
+- Prepared and formatted all three official meeting-minute files for Sprint 4 (Meetings #1–#3).  
+- Expanded sections to include detailed discussions, blockers, risks, and testing notes.  
+- Matched the formatting of previous sprints with consistent headers, tables, and section ordering.  
+- Exported each meeting as a PDF and verified formatting before adding to the repository.  
+**Time Spent:** ~2.5 hours (0.83 h per meeting × 3)
+
+---
+
+## Ahmad Al Habbal  
+**Task:** Documentation, Repository Cleanup & Submission Preparation  
+**Activities:**  
+- Helped finalize the README/User Guide with updated installation steps and usage instructions.  
+- Updated documentation folders and verified the architecture diagram reflected the final system design.  
+- Cleaned the repository structure to ensure Sprint 4 documents and test reports were organized correctly.  
+- Confirmed all acceptance testing documentation and screenshots were uploaded to the correct directories.  
+- Completed milestone tracking and ensured all Sprint 4 tasks were linked and closed properly.  
+- Assisted teammates with commit message cleanup and final submission readiness.  
+**Time Spent:** ~1.75 hours (1 h repo/doc cleanup + 0.75 h milestone review)
 
