@@ -1,1 +1,51 @@
+Fady Dous
 
+Task: Backend Implementation for Event Chat Feature (Extra Feature)
+Activities:
+
+Designed and implemented the backend architecture for the new Event Chat / Live Q&A feature.
+
+Created new Express routes and controllers to handle message retrieval, posting, and event-scoped chat sessions.
+
+Added a dedicated ChatMessage MongoDB collection with fields for event ID, sender, timestamp, and role tagging.
+
+Implemented role-aware handling so organizer messages are flagged and returned with highlighted status.
+
+Ensured chat endpoints fully integrate with existing authentication and authorization middleware.
+
+Added input validation and error handling to prevent empty messages and malformed requests.
+
+Performed local testing using Postman to verify message flow, response structure, and persistence.
+
+Coordinated with frontend teammate to sync API payload formats and enable smooth UI rendering.
+Time Spent: ~8.5 hours (6 h implementation + 2 h testing/debugging + 0.5 h integration)
+
+Fady Dous
+
+Task: Feature Integration & Deployment Readiness
+Activities:
+
+Connected backend chat APIs to the event-details modal workflow to ensure messages load only per selected event.
+
+Updated server logs and debugging prompts for easier traceability during final integration.
+
+Assisted in resolving cross-origin and proxy configuration issues between client and API.
+
+Validated that the chat feature does not affect existing ticketing or event discovery endpoints.
+
+Performed smoke testing across student and organizer roles to confirm access restrictions behave correctly.
+Time Spent: ~2.25 hours (1.5 h integration + 0.75 h validation)
+
+Fady Dous
+
+Task: Final Submission Support & Repository Updates
+Activities:
+
+Added new backend files and ensured proper folder structure within the api directory.
+
+Updated documentation references to include the new chat endpoints and feature description.
+
+Confirmed the feature branch was merged cleanly into main without breaking existing functionality.
+
+Supported teammates with final testing and fixed minor issues discovered during end-to-end verification.
+Time Spent: ~1.5 hours (1 h repo+docs updates + 0.5 h support)
