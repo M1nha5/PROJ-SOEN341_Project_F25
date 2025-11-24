@@ -1,1 +1,47 @@
+Harjot Minhas
 
+Task: Backend Collaboration for Event Chat Feature (Extra Feature)
+Activities:
+
+Worked jointly on designing and implementing backend support for the Event Chat / Live Q&A feature.
+
+Assisted in defining the chat data model and refining the structure of the ChatMessage MongoDB collection.
+
+Helped develop and review Express routes/controllers for fetching and posting chat messages tied to each event.
+
+Contributed to adding authentication and role-based access checks for secure message handling.
+
+Supported debugging of message flow issues and verified API responses using Postman.
+
+Coordinated with teammates to align backend payload formats with frontend consumption requirements.
+Time Spent: ~7.5 hours (5.5 h implementation + 1.5 h testing + 0.5 h collaboration)
+
+Harjot Minhas
+
+Task: Sprint 4 Integration & Bug Resolution
+Activities:
+
+Participated in final integration of the chat backend into the existing event system workflow.
+
+Helped resolve CORS and routing inconsistencies discovered during merged feature testing.
+
+Performed regression checks to ensure no impact on authentication, event discovery, or ticketing flows.
+
+Logged and fixed backend logic issues related to invalid event IDs and missing message validation.
+
+Assisted in syncing updated API documentation across the team.
+Time Spent: ~2 hours (1.25 h debugging + 0.75 h integration)
+
+Harjot Minhas
+
+Task: Repository Maintenance & Submission Coordination
+Activities:
+
+Reviewed and approved pull requests related to Sprint 4 backend changes.
+
+Ensured proper branching and merge practices for the feature branch before submission.
+
+Verified backend folders and naming conventions followed project structure standards.
+
+Supported final deployment preparation and participated in end-to-end testing with the team.
+Time Spent: ~1.5 hours (1 h repo review + 0.5 h final testing support)
