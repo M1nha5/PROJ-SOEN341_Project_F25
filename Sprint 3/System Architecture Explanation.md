@@ -1,12 +1,14 @@
 System Architecture Explanation – Campus Events & Ticketing System
+Overview
 
-This document explains the architecture represented in the provided diagram. The system follows a three-tier web architecture with clearly separated concerns, enabling scalability, security, and maintainability.
+This document explains the high-level architecture of the Campus Events & Ticketing System.
+The system uses a layered architecture with Frontend, API Layer, Business Logic, Database, and External Services, all communicating through a REST API.
 
-1. Presentation Tier – Client (React SPAs)
+1. Presentation Tier – Web Client (React SPAs)
 
-The system provides three dedicated Single Page Applications (SPAs), each built with React:
+The system provides three React Single-Page Applications (SPAs) — one for each user role:
 
-1. Student SPA
+Student SPA
 
 Event discovery & search
 
@@ -14,99 +16,87 @@ Ticket claiming & QR viewing
 
 Event chat participation
 
-2. Organizer SPA
+Organizer SPA
 
-Event creation & editing
+Create & edit events
 
 Attendance dashboard
 
-Moderating chat messages
+Chat moderation
 
-3. Admin SPA
+Admin SPA
 
-Approving organizer accounts
+Approve organizer accounts
 
-Global platform analytics
+Platform analytics
 
 Event moderation
 
-All SPAs communicate with the backend exclusively through HTTPS + JSON.
-Authentication tokens and role-based access rules determine what each user type can access.
+All SPAs communicate with the backend using HTTPS + JSON.
 
 2. API Layer – Express Routing & Middleware
 
-Incoming HTTP requests are handled by the API Layer, built with Node.js + Express.
+All client requests pass through the Node.js / Express API Layer.
 
-Responsibilities of this layer:
+Responsibilities
 
-Routing requests to /auth, /events, /tickets, /admin, /chat
+Routing for /auth, /events, /tickets, /admin, /chat
 
-Input validation (ensuring proper params, data formats, and types)
+Request validation
 
-Authorization Middleware:
+JWT authentication
 
-JWT validation
+Role-Based Access Control (RBAC) for student / organizer / admin
 
-Role-Based Access Control (RBAC): student, organizer, admin
+This layer ensures secure and role-appropriate access to all features.
 
-Sanitizing incoming data and preventing common API-level vulnerabilities
+3. Business Logic Layer – Core Services
 
-This layer serves as the gateway between the React SPAs and the core backend logic.
-
-3. Business Logic Layer – Application Services
-
-This layer contains the core functionality of the system and encapsulates all business rules.
-Each key feature is implemented as its own independent service.
+This layer contains all application logic, organized into backend services:
 
 EventService
 
-Create, edit, cancel events
+Create / update / cancel events
 
-Enforce capacity rules and scheduling constraints
+Enforce capacity rules
 
-Provide filtered event listings
+Event listings & filters
 
 TicketService
 
-Claim and unclaim tickets
+Claim / unclaim tickets
 
-Prevent overbooking and duplicates
+Prevent duplicates & over-capacity
 
-Handle QR generation and validation
-
-Manage check-in workflow
+QR generation & validation
 
 AdminService
 
-Approve or reject new organizer requests
+Approve / reject organizers
 
-Compute global platform analytics
+Global statistics
 
-Moderate events
+Event moderation
 
-ChatService (Mock Implementation)
+ChatService (Mock)
 
-Manage text threads per event
+Chat threads per event
 
-Support future upgrade to database-backed persistence
+Organizer-tagged messages
 
-Provide organizer-tagged messages
+Structure prepared for future DB storage
 
 AnalyticsService
 
-Aggregate statistics
+Ticket & attendance statistics
 
-Track ticket counts, events, trends
+Dashboard metrics
 
-Power admin dashboards
+This structure keeps logic modular, testable, and maintainable.
 
-By separating these into modular services, the system remains easier to maintain and extend.
+4. Data Access Layer – Mongoose Repositories
 
-4. Data Access Layer – Repositories (Mongoose)
-
-To interact with the MongoDB database cleanly, we use the Repository Pattern through Mongoose models.
-
-Repositories include:
+The backend uses Mongoose repositories following the Repository Pattern:
 
 UserRepository
 
@@ -118,81 +108,56 @@ OrganizationRepository
 
 ChatRepository (future)
 
-Responsibilities:
+Responsibilities
 
-Executing clean database queries
+Clean database queries
 
-Converting MongoDB documents into application-friendly objects
+Data formatting & normalization
 
-Ensuring data consistency
+Enforcing consistency
 
-This separation ensures the Business Logic Layer does not deal directly with database syntax.
+This layer isolates database logic from business logic.
 
-5. Data Tier – MongoDB & External Services
-MongoDB (studentevent)
+5. Data Tier – MongoDB
 
-Stores all persistent data:
+MongoDB stores all persistent domain data:
 
-Users & roles
+Users
 
 Events
 
 Organizations
 
-Tickets & QR tokens
+Tickets + QR tokens
 
-Chat threads (future expansion)
+(Future) Chat messages
 
-MongoDB was chosen for:
-
-Easy schema evolution
-
-Fast document-based queries
-
-Seamless integration with Node.js through Mongoose
+MongoDB was chosen for its flexible schema and excellent Node.js integration.
 
 6. External Services
-1. Email Service
+Email Service
 
-Built using Nodemailer + Gmail SMTP
+Built with Nodemailer + Gmail SMTP
 
-Sends cancellation emails and approval notifications
+Sends cancellation emails & organizer approval notifications
 
-2. QR Code Service
+QR Code Service
 
-Generates unique ticket QR codes
+Generates QR codes for tickets
 
-Validates QR contents during check-in
-
-These external services keep core logic minimal and offload specialized features.
+Decodes & validates QR content during check-in
 
 7. Architectural Benefits
-Scalability
 
-Clear separation between frontend, backend, services, repositories
+Scalable: clean separation of concerns
 
-Easy to introduce microservices later (e.g., real-time chat)
+Secure: JWT, RBAC, validated API requests
 
-Security
+Maintainable: modular services + repository pattern
 
-JWT authentication
-
-Role-based permission checks
-
-Sanitized input through the API layer
-
-Maintainability
-
-Modular service decomposition
-
-Repository pattern isolates DB logic
-
-Clear boundaries enable easier team collaboration
-
-Extensibility
-
-New features (e.g., real-time chat, push notifications) fit naturally into Business Logic → Repository → API workflow.
+Extensible: features like Chat integrate seamlessly
 
 Conclusion
 
-The architecture provides a clean, layered, and industry-standard foundation for the Campus Events & Ticketing System. The separation of responsibilities ensures that each module—frontend, backend, business services, data layer, and external integrations—can evolve independently while keeping the system stable, secure, and easy to maintain.
+This layered architecture is secure, scalable, and future-ready.
+It supports enhancements such as real-time chat, payments, and advanced analytics without needing major redesign.
