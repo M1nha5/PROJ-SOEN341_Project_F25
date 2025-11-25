@@ -1,96 +1,198 @@
-## System Architecture Explanation – *Campus Events & Ticketing System*
+System Architecture Explanation – Campus Events & Ticketing System
 
-### **Overview**
+This document explains the architecture represented in the provided diagram. The system follows a three-tier web architecture with clearly separated concerns, enabling scalability, security, and maintainability.
 
-This architecture diagram represents the **Campus Event Management System**, which allows **students**, **organizers**, and **administrators** to interact through a unified platform. The system is divided into **Frontend**, **Backend**, **Database**, and **External Services** layers, all communicating through a REST API.
+1. Presentation Tier – Client (React SPAs)
 
-### **1. Users (Top Layer)**
+The system provides three dedicated Single Page Applications (SPAs), each built with React:
 
-There are **three primary user roles** in the system:
+1. Student SPA
 
-* **Student:**
-  Students browse, search, and register for events. They can save events to their calendar, claim tickets, and receive QR-coded digital passes.
+Event discovery & search
 
-* **Organizer:**
-  Organizers create and manage events. They can view event analytics (tickets issued, attendance rates, capacity) and validate tickets during entry.
+Ticket claiming & QR viewing
 
-* **Admin:**
-  Administrators moderate the system. They approve organizer accounts, manage event listings, and oversee platform analytics and policies.
+Event chat participation
 
-### **2. Frontend Layer (Blue Box)**
+2. Organizer SPA
 
-This is the **user interface** of the system, built using **React.js** and styled with tools like **Tailwind CSS** or CSS modules.
-It ensures an intuitive and responsive design accessible from both desktop and mobile devices.
+Event creation & editing
 
-#### Components:
+Attendance dashboard
 
-* **Event Discovery:**
-  Enables students to search and filter events by date, category, or organization.
+Moderating chat messages
 
-* **Event Creation:**
-  Allows organizers to input event details (title, date, time, location, ticket type, etc.) and publish events.
+3. Admin SPA
 
-* **Dashboard & Moderate:**
-  Provides admins with controls to approve organizers, manage events, and monitor system activity.
+Approving organizer accounts
 
-#### Communication:
+Global platform analytics
 
-* The frontend communicates with the backend via **REST API** calls (HTTP requests).
+Event moderation
 
-### **3. Backend Layer (Green Box)**
+All SPAs communicate with the backend exclusively through HTTPS + JSON.
+Authentication tokens and role-based access rules determine what each user type can access.
 
-The **backend** handles business logic, data processing, and system operations. It is implemented using **Node.js (Express)** and connects directly with MongoDB.
+2. API Layer – Express Routing & Middleware
 
-#### Core Modules:
+Incoming HTTP requests are handled by the API Layer, built with Node.js + Express.
 
-* **Event Management:**
-  Handles CRUD operations for event data — creation, modification, and deletion.
+Responsibilities of this layer:
 
-* **Validation:**
-  Manages ticket verification, input validation, and QR code validation logic.
+Routing requests to /auth, /events, /tickets, /admin, /chat
 
-* **Analytics:**
-  Gathers and computes statistics for events, such as tickets sold, attendance trends, and user engagement.
+Input validation (ensuring proper params, data formats, and types)
 
-* **Email Service:**
-  Sends automatic email confirmations and QR ticket attachments using **Nodemailer**.
+Authorization Middleware:
 
-### **4. Database Layer (Yellow Box)**
+JWT validation
 
-The system uses **MongoDB** as its database.
+Role-Based Access Control (RBAC): student, organizer, admin
 
-#### Functions:
+Sanitizing incoming data and preventing common API-level vulnerabilities
 
-* Stores event information, user profiles, ticket data, and organizer details.
-* Maintains relationships between users, events, and transactions.
-* Connects to the backend via the **MongoDB connection** driver.
+This layer serves as the gateway between the React SPAs and the core backend logic.
 
-### **5. External Services**
+3. Business Logic Layer – Application Services
 
-* **QR Code Service:**
-  A microservice or integrated module responsible for generating and verifying QR codes for tickets.
-  It interacts with both the **Validation module** and **MongoDB** to confirm event and ticket authenticity.
+This layer contains the core functionality of the system and encapsulates all business rules.
+Each key feature is implemented as its own independent service.
 
-### **6. Overall Flow**
+EventService
 
-1. **User Interaction:**
-   Students, organizers, or admins access the frontend interface.
-2. **API Request:**
-   The frontend sends REST API calls to the backend.
-3. **Backend Processing:**
-   Backend modules (Event Management, Validation, etc.) handle the logic.
-4. **Database Operations:**
-   MongoDB stores or retrieves data as requested.
-5. **External Service Integration:**
-   The QR Code Service generates or validates ticket codes.
-6. **Email Notification:**
-   The Email Service sends confirmation and ticket details.
-7. **Response Returned:**
-   The backend sends processed data or success messages back to the frontend.
+Create, edit, cancel events
 
-### **7. Key Strengths**
+Enforce capacity rules and scheduling constraints
 
-✅ Modular design — each component can be developed and tested independently.
-✅ Scalability — MongoDB supports dynamic event and user data growth.
-✅ Security — Validation ensures data integrity and safe ticketing.
-✅ Extensibility — Future features like payment integration and analytics dashboards can be added easily.
+Provide filtered event listings
+
+TicketService
+
+Claim and unclaim tickets
+
+Prevent overbooking and duplicates
+
+Handle QR generation and validation
+
+Manage check-in workflow
+
+AdminService
+
+Approve or reject new organizer requests
+
+Compute global platform analytics
+
+Moderate events
+
+ChatService (Mock Implementation)
+
+Manage text threads per event
+
+Support future upgrade to database-backed persistence
+
+Provide organizer-tagged messages
+
+AnalyticsService
+
+Aggregate statistics
+
+Track ticket counts, events, trends
+
+Power admin dashboards
+
+By separating these into modular services, the system remains easier to maintain and extend.
+
+4. Data Access Layer – Repositories (Mongoose)
+
+To interact with the MongoDB database cleanly, we use the Repository Pattern through Mongoose models.
+
+Repositories include:
+
+UserRepository
+
+EventRepository
+
+TicketRepository
+
+OrganizationRepository
+
+ChatRepository (future)
+
+Responsibilities:
+
+Executing clean database queries
+
+Converting MongoDB documents into application-friendly objects
+
+Ensuring data consistency
+
+This separation ensures the Business Logic Layer does not deal directly with database syntax.
+
+5. Data Tier – MongoDB & External Services
+MongoDB (studentevent)
+
+Stores all persistent data:
+
+Users & roles
+
+Events
+
+Organizations
+
+Tickets & QR tokens
+
+Chat threads (future expansion)
+
+MongoDB was chosen for:
+
+Easy schema evolution
+
+Fast document-based queries
+
+Seamless integration with Node.js through Mongoose
+
+6. External Services
+1. Email Service
+
+Built using Nodemailer + Gmail SMTP
+
+Sends cancellation emails and approval notifications
+
+2. QR Code Service
+
+Generates unique ticket QR codes
+
+Validates QR contents during check-in
+
+These external services keep core logic minimal and offload specialized features.
+
+7. Architectural Benefits
+Scalability
+
+Clear separation between frontend, backend, services, repositories
+
+Easy to introduce microservices later (e.g., real-time chat)
+
+Security
+
+JWT authentication
+
+Role-based permission checks
+
+Sanitized input through the API layer
+
+Maintainability
+
+Modular service decomposition
+
+Repository pattern isolates DB logic
+
+Clear boundaries enable easier team collaboration
+
+Extensibility
+
+New features (e.g., real-time chat, push notifications) fit naturally into Business Logic → Repository → API workflow.
+
+Conclusion
+
+The architecture provides a clean, layered, and industry-standard foundation for the Campus Events & Ticketing System. The separation of responsibilities ensures that each module—frontend, backend, business services, data layer, and external integrations—can evolve independently while keeping the system stable, secure, and easy to maintain.
