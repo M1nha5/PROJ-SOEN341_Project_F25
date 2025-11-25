@@ -1,1 +1,24 @@
+Abed-Elmouhsen Cherkawi
+Task: Backend Work for Event Chat Feature (Extra Feature)
+Activities:
 
+
+Implemented backend logic for Event Chat, including message creation, retrieval, and event-scoped filtering.
+
+
+Built and refined Express routes/controllers with validation, error handling, and clean integration into existing auth.
+
+
+Structured and optimized the ChatMessage MongoDB model for efficient querying.
+
+
+Added organizer-message tagging and response formatting.
+
+
+Debugged message flow and verified API responses using Postman.
+
+
+Coordinated with teammates to finalize consistent payload formats.
+
+
+Time Spent: ~5.5 hours (3.5 h implementation + 1.5 h testing + 0.5 h coordination)
