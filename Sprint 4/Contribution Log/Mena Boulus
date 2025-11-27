@@ -1,1 +1,12 @@
-
+Mena Boulus
+Task: Chat Box Feature – Frontend Development & Integration
+Activities:
+Collaborated on implementing the new chat box feature as an additional system component.
+Built core UI components for the chat interface, including message container, input field, and sender/receiver message styling.
+Ensured responsive design and proper layout behavior across different screen sizes.
+Integrated the chat box with mock API routes and connected message states to dynamic updates.
+Implemented smooth scrolling, auto-scroll behavior, and message-rendering optimizations for better user experience.
+Assisted in setting up frontend event listeners and handling real-time update logic.
+Performed debugging on message rendering, state management, and UI inconsistencies during integration.
+Participated in pair-programming sessions to align chat-feature design with the rest of the platform’s UI standards.
+Time Spent: ~7.5 hours (5.5 h implementation + 1 h UI fixes/optimizations + 1 h integration/debugging)
