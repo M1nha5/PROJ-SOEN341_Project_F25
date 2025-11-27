@@ -1,1 +1,35 @@
+Abd Al Rahman Al Kabani
+Task: UI Polish, Workflow Refinement & Pre-Submission Testing
+Activities:
+
+* Refined page layouts and adjusted spacing for smoother navigation across core modules.
+* Re-tested login, registration, and role-switch functions to confirm stability after UI adjustments.
+* Flagged minor inconsistencies in button states, labels, and error prompts.
+* Coordinated with teammates to ensure all final UI tweaks matched the expected design.
+* Performed a last pass on feature flows to confirm everything behaved consistently across roles.
+Time Spent:3 hours
+
+
+
+Task: API Validation, Error Handling Review & Data Consistency Checks
+Activities:
+
+* Verified API endpoints for events, profiles, and notifications to ensure correct request/response handling.
+* Tested failure scenarios to confirm clear and meaningful error messages.
+* Checked data flow between front-end forms and backend models for accuracy.
+* Logged any mismatched payloads or fields needing updates.
+* Ensured the database reflected all test actions with no duplicate or missing records.
+Time Spent:2 hours
+
+
+Task: Sprint Wrap-Up, Team Coordination & Final Presentation Prep
+Activities:
+
+* Reviewed project deliverables to ensure all Sprint 4 requirements were fully met.
+* Helped organize evidence (screenshots, test cases, diagrams) for the final submission.
+* Synced with each team member to confirm their components were merged cleanly.
+* Updated the final slide deck with correct information and consistent formatting.
+* Conducted a quick dry run to check timing, clarity, and flow of the presentation.
+Time Spent: 1.5 hours
+
 
