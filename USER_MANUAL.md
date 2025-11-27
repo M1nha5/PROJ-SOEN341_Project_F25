@@ -52,7 +52,7 @@ MONGO_URI=mongodb://localhost:27017/studentevent
 JWT_SECRET=your_jwt_secret
 GMAIL_USER=your_email@gmail.com
 GMAIL_APP_PASSWORD=app_password_here
-PORT=5001
+PORT=5000
 
 
 Run the backend:
@@ -102,11 +102,11 @@ Organizers self-register, but Admins must approve them from the Admin Dashboard.
 
 The system has three separate dashboards:
 
-👩‍🎓 Student Dashboard
+Student Dashboard
 
-🧑‍🏫 Organizer Dashboard
+Organizer Dashboard
 
-🛡️ Admin Dashboard
+Admin Dashboard
 
 Each role sees different features.
 
