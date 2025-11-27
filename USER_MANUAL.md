@@ -62,7 +62,7 @@ npm run dev
 
 The backend is now live at:
 
-http://localhost:5001
+http://localhost:5000
 
 ### 3.3 Install Frontend (Client)
 
