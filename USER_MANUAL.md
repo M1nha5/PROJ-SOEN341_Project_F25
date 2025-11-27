@@ -270,7 +270,7 @@ Client fails to start
 react-scripts: command not found
 
 
-➡ Run:
+Run:
 
 npm install
 
