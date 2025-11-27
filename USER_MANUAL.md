@@ -1,5 +1,5 @@
-# USER MANUAL — Campus Events & Ticketing System
-SOEN 341 — Fall 2025 Project
+# USER MANUAL for Campus Events & Ticketing System
+SOEN 341 Fall 2025 Project
 
 Team: PROJ-SOEN341_Project_F25
 
